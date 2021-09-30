@@ -7,36 +7,75 @@ import Layout from "../Layout";
 const About = () => {
   return (
     <Layout>
+      <div className="gallery-container">
+        <div className="gallery">
+          <h1>About Viplus</h1>
+          <div>
+            <a className="prev" href="/">
+              Home&nbsp;
+            </a>{" "}
+            <span> {">"} </span>
+            <a href="#"> &nbsp; About</a>
+          </div>
+        </div>
+      </div>
       <section className="m-4 homepage-about d-flex align-items-center">
-        <Container className="text-center">
-          <Row>
+        <Container style={{ marginBottom: "100px" }} className="text-center ">
+          <Row className="align-items-center mb-4">
             <Col>
-              <h1>About us</h1>
+              <span className="count">
+                Our
+                <span className="count2"> Mission</span>
+              </span>
+            </Col>
+            <Col>
+              <p className="text-start">
+                There's this notion that to grow a business, you have to be
+                ruthless. But we know there's a better way to grow. One where
+                what's good for the bottom line is also good for customers.Our
+                Mission is to be an international brand. We have trendy caps and
+                good quality stuff and designing.
+              </p>
+            </Col>
+          </Row>
+
+          <Row className="align-items-center mb-4">
+            <Col md={6}>
+              <p className="text-end">
+                Viplus deals in b2b and b2c. We started as a small business.
+                Then because of our hardwork and patience we were able to thrive
+                in this industry. Presently we have 500+ dealers in the Indian
+                marketing. Our customers are our top priority.
+              </p>
+            </Col>
+            <Col md={6}>
+              <span className="count">
+                Our
+                <span className="count2"> Story</span>
+              </span>
+            </Col>
+          </Row>
+          <Row className="align-items-center mb-4">
+            <Col>
+              <span className="count">
+                Our
+                <span className="count2"> Founder</span>
+              </span>
+            </Col>
+            <Col>
+              <p className="text-start">
+                We’re a team of around 15 people (and one pupper), all working
+                out of the Little’s factory in Devon where we make and pack all
+                of your coffee. The humans, not the pupper.
+              </p>
             </Col>
           </Row>
           <Row>
-            <Col className="mb-4">
+            <Col className="m-4">
               <span className="count">
                 500+ Clients{" "}
                 <span className="count2"> and still counting.</span>
               </span>
-            </Col>
-          </Row>
-          <Row>
-            <Col className="quote-icon" md={3}>
-              <ImQuotesLeft />
-            </Col>
-
-            <Col>
-              <p>
-                Viplus deal in b2b and b2c and already we have 500+ dealers in
-                the Indian marketing and this year we would be deal in
-                international market. We have trendy caps and good quality stuff
-                and designing.
-              </p>
-            </Col>
-            <Col className="quote-icon" md={3}>
-              <ImQuotesRight />
             </Col>
           </Row>
         </Container>

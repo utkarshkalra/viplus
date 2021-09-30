@@ -51,16 +51,27 @@ const Footer = () => {
             <h5 className=" mb-3">Our Socials</h5>
             <ul className="list-unstyled text-muted">
               <li>
-                <TiSocialInstagram /> <a href="#">Instagram</a>
+                <TiSocialInstagram />{" "}
+                <a
+                  href="https://instagram.com/myviplus?utm_medium=copy_link"
+                  target="_blank"
+                >
+                  Instagram
+                </a>
               </li>
               <li>
                 <TiSocialFacebook />
-                <a href="#">Facebook</a>
+                <a
+                  href="https://www.facebook.com/104583478409837/posts/116409340560584/?sfnsn=wiwspmo"
+                  target="_blank"
+                >
+                  Facebook
+                </a>
               </li>
-              <li>
+              {/* <li>
                 <TiSocialTwitter />
                 <a href="#">Twitter</a>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="col-lg-3 col-md-6">

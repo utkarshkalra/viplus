@@ -1,6 +1,6 @@
 .homepage-about {
   color: #555;
-  height: 80vh;
+  min-height: 80vh;
 }
 
 .homepage-about h1 {

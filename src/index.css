@@ -45,3 +45,7 @@ button {
   background-color: var(--brand-color-dark) !important;
   font-weight: 600;
 }
+
+.wa-chat-box-poweredby {
+  display: none !important;
+}

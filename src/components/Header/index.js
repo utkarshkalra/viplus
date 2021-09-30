@@ -13,6 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { login, signout, getCartItems, signup as _signup } from "../../actions";
 import Cart from "../UI/Cart";
+import { IoMdCall } from "react-icons/io";
 
 const Header = (props) => {
   const [loginModal, setLoginModal] = useState(false);
@@ -127,90 +128,107 @@ const Header = (props) => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Modal visible={loginModal} onClose={() => setLoginModal(false)}>
-        <div className="authContainer">
-          <div className="row">
-            <div className="leftspace col">
-              <h2>Login</h2>
-              <p>Get access to your Orders, Wishlist and Recommendations</p>
-            </div>
-            <div className="rightspace col">
-              <div className="loginInputContainer">
-                {auth.error && (
-                  <div style={{ color: "red", fontSize: 12 }}>{auth.error}</div>
-                )}
-                {signup && (
+      <div className="header">
+        <Modal visible={loginModal} onClose={() => setLoginModal(false)}>
+          <div className="authContainer">
+            <div className="row">
+              <div className="leftspace col">
+                <img
+                  src={ViplusLogo}
+                  alt="viplus logo"
+                  style={{ width: "90px" }}
+                />
+                <h2>Login</h2>
+                <p>Get access to your Orders, Cart</p>
+                <div>
+                  <i>
+                    <IoMdCall />
+                  </i>
+                  <a href="#" style={{ color: "white", fontWeight: "800" }}>
+                    +91 9922334455
+                  </a>
+                </div>
+              </div>
+              <div className="rightspace col">
+                <div className="loginInputContainer">
+                  {auth.error && (
+                    <div style={{ color: "red", fontSize: 12 }}>
+                      {auth.error}
+                    </div>
+                  )}
+                  {signup && (
+                    <MaterialInput
+                      type="text"
+                      label="First Name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                    />
+                  )}
+                  {signup && (
+                    <MaterialInput
+                      type="text"
+                      label="Last Name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                    />
+                  )}
+
                   <MaterialInput
                     type="text"
-                    label="First Name"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    label="Email/Mobile Number"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
-                )}
-                {signup && (
                   <MaterialInput
-                    type="text"
-                    label="Last Name"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
+                    type="password"
+                    label="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    // rightElement={<a href="#">Forgot?</a>}
                   />
-                )}
+                  <MaterialButton
+                    title={signup ? "Register" : "Login"}
+                    bgColor="var(--brand-color)"
+                    textColor="#ffffff"
+                    style={{
+                      margin: "40px 0 20px 0",
+                    }}
+                    onClick={userLogin}
+                  />
 
-                <MaterialInput
-                  type="text"
-                  label="Email/Mobile Number"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <MaterialInput
-                  type="password"
-                  label="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  // rightElement={<a href="#">Forgot?</a>}
-                />
-                <MaterialButton
-                  title={signup ? "Register" : "Login"}
-                  bgColor="var(--brand-color)"
-                  textColor="#ffffff"
-                  style={{
-                    margin: "40px 0 20px 0",
-                  }}
-                  onClick={userLogin}
-                />
-
-                {!signup ? (
-                  <p className="m-4 text-center w-75 mx-auto">
-                    Don't have an account ?
-                    <span
-                      onClick={() => {
-                        setLoginModal(true);
-                        setSignup(true);
-                      }}
-                      style={{ color: "#2874f0" }}
-                    >
-                      Sign Up
-                    </span>
-                  </p>
-                ) : (
-                  <p className="m-4 text-center w-75 mx-auto">
-                    Already a User ?
-                    <span
-                      onClick={() => {
-                        setSignup(false);
-                        setLoginModal(true);
-                      }}
-                      style={{ color: "#2874f0" }}
-                    >
-                      Login
-                    </span>
-                  </p>
-                )}
+                  {!signup ? (
+                    <p className="m-4 text-center w-75 mx-auto">
+                      Don't have an account ?
+                      <span
+                        onClick={() => {
+                          setLoginModal(true);
+                          setSignup(true);
+                        }}
+                        style={{ color: "#2874f0" }}
+                      >
+                        Sign Up
+                      </span>
+                    </p>
+                  ) : (
+                    <p className="m-4 text-center w-75 mx-auto">
+                      Already a User ?
+                      <span
+                        onClick={() => {
+                          setSignup(false);
+                          setLoginModal(true);
+                        }}
+                        style={{ color: "#2874f0" }}
+                      >
+                        Login
+                      </span>
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </Modal>
+        </Modal>
+      </div>
     </>
   );
 };

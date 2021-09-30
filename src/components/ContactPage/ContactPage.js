@@ -21,7 +21,7 @@ const ContactPage = () => {
             <div className="contact-left d-none d-md-block">
               <img src={contact} alt="contact us" />
             </div>
-            <div className="contact-right ">
+            <div className="contact-right">
               <h1>Contact Us</h1>
               <p>
                 Want to get in touch? We'd love to hear from you. Here's how you
@@ -46,13 +46,23 @@ const ContactPage = () => {
                     <i>
                       <TiSocialFacebook />
                     </i>
-                    <a href="">Facebook</a>
+                    <a
+                      href="https://www.facebook.com/104583478409837/posts/116409340560584/?sfnsn=wiwspmo"
+                      target="_blank"
+                    >
+                      Facebook
+                    </a>
                   </li>
                   <li>
                     <i>
                       <TiSocialInstagram />
                     </i>
-                    <a href="">Instagram</a>
+                    <a
+                      href="https://instagram.com/myviplus?utm_medium=copy_link"
+                      target="_blank"
+                    >
+                      Instagram
+                    </a>
                   </li>{" "}
                 </ul>
               </div>

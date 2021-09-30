@@ -25,10 +25,12 @@
   min-width: 300px;
   width: 80%;
   margin: auto;
+  margin-left: 200px;
 }
 
 .contact-right h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
+  font-weight: 900;
 }
 .contact-right li {
   list-style: none;
@@ -37,9 +39,11 @@
   width: 100%;
   min-width: 200px;
 }
-
-.contact-right i {
+.contact-right p {
   font-size: 2rem;
+}
+.contact-right i {
+  font-size: 2.2rem;
 }
 .contact-right a {
   color: #eee;
@@ -69,6 +73,7 @@
 
   .contact-container .contact-right {
     align-items: center;
+    margin-left: auto;
   }
 
   .contact-container .contact-right p {
