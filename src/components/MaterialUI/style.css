@@ -24,7 +24,7 @@
 .modalClose {
   position: absolute;
   color: #fff;
-  right: 15px;
+  right: -24px;
   font-size: 20px;
 }
 
