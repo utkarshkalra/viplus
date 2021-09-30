@@ -2,10 +2,12 @@ import { productConstants } from "../actions/constants";
 
 const initState = {
   products: [],
+  productRequest: false,
   priceRange: {},
   productsByPrice: {},
   pageRequest: false,
   page: {},
+  productError: {},
   error: null,
   productDetails: {},
   loading: false,
@@ -13,6 +15,12 @@ const initState = {
 
 export default (state = initState, action) => {
   switch (action.type) {
+    case productConstants.GET_PRODUCTS_BY_SLUG_REQUEST:
+      state = {
+        ...state,
+        productRequest: true,
+      };
+      break;
     case productConstants.GET_PRODUCTS_BY_SLUG:
       state = {
         ...state,
@@ -21,6 +29,14 @@ export default (state = initState, action) => {
         productsByPrice: {
           ...action.payload.productsByPrice,
         },
+        productRequest: false,
+      };
+      break;
+    case productConstants.GET_PRODUCTS_BY_SLUG_FAILURE:
+      state = {
+        ...state,
+        productRequest: false,
+        productError: action.payload.error,
       };
       break;
     case productConstants.GET_PRODUCT_PAGE_REQUEST:

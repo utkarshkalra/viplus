@@ -1,6 +1,14 @@
-.cartContainer{
-    display: flex;
-    max-width: 1260px;
-    margin: 15px auto;
-    justify-content: space-between;
+.cartContainer {
+  max-width: 1260px;
+  margin: 15px auto;
+  justify-content: space-between;
+  height: 90vh;
+  width: 90vw;
+}
+
+.place-order {
+  background-color: lightcoral;
+  color: var(--font-color-2);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }

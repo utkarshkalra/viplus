@@ -8,6 +8,7 @@ import PriceDetails from "../../components/PriceDetails";
 
 import "./style.css";
 import { MaterialButton } from "../../components/MaterialUI";
+import Loading from "../../components/UI/Loading/loading";
 
 /**
  * @author
@@ -29,10 +30,12 @@ const CartPage = (props) => {
   const auth = useSelector((state) => state.auth);
   // const cartItems = cart.cartItems;
   const [cartItems, setCartItems] = useState(cart.cartItems);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setCartItems(cart.cartItems);
+    if (cart.cartItems.length > 0) setLoading(false);
   }, [cart.cartItems]);
 
   useEffect(() => {
@@ -73,11 +76,14 @@ const CartPage = (props) => {
 
   return (
     <Layout>
-      <div className="cartContainer" style={{ alignItems: "flex-start" }}>
+      <div
+        className="cartContainer d-flex flex-column flex-md-row"
+        style={{ alignItems: "flex-start" }}
+      >
         <Card
           headerLeft={`My Cart`}
           headerRight={<div>Deliver to</div>}
-          style={{ width: "calc(100% - 400px)", overflow: "hidden" }}
+          style={{ flex: "3", overflow: "scroll" }}
         >
           {Object.keys(cartItems).map((key, index) => (
             <CartItem
@@ -88,36 +94,33 @@ const CartPage = (props) => {
               onRemoveCartItem={onRemoveCartItem}
             />
           ))}
-
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              background: "#ffffff",
-              justifyContent: "flex-end",
-              boxShadow: "0 0 10px 10px #eee",
-              padding: "10px 0",
-              boxSizing: "border-box",
-            }}
-          >
-            <div style={{ width: "250px" }}>
-              <MaterialButton
-                title="PLACE ORDER"
-                onClick={() => props.history.push(`/checkout`)}
-              />
-            </div>
-          </div>
         </Card>
-        <PriceDetails
-          totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
-            return qty + cart.cartItems[key].qty;
-          }, 0)}
-          totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
-            const { price, qty } = cart.cartItems[key];
-            return totalPrice + price * qty;
-          }, 0)}
-        />
+        <div
+          className="d-flex flex-column w-100 m-md-3 my-3"
+          style={{ flex: "2" }}
+        >
+          <PriceDetails
+            totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
+              return qty + cart.cartItems[key].qty;
+            }, 0)}
+            totalPrice={Object.keys(cart.cartItems).reduce(
+              (totalPrice, key) => {
+                const { price, qty } = cart.cartItems[key];
+                return totalPrice + price * qty;
+              },
+              0
+            )}
+          />
+
+          <button
+            onClick={() => props.history.push(`/checkout`)}
+            className="w-100 place-order p-2"
+          >
+            PLACE ORDER
+          </button>
+        </div>
       </div>
+      )
     </Layout>
   );
 };

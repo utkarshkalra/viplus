@@ -1,11 +1,6 @@
 import React from "react";
 import { IoIosCart } from "react-icons/io";
 
-/**
- * @author
- * @function Cart
- **/
-
 const Cart = (props) => {
   return (
     <div style={{ fontSize: "20px", position: "relative" }}>

@@ -10,6 +10,10 @@ import CartPage from "./containers/CartPage";
 import CheckoutPage from "./containers/CheckoutPage";
 import OrderPage from "./containers/OrderPage";
 import OrderDetailsPage from "./containers/OrderDetailsPage";
+import AllProducts from "./containers/ProductListPage/AllProducts/index.allproducts";
+import PhotoGallery from "./components/PhotoGallery/index.photogallery";
+import ContactPage from "./components/ContactPage/ContactPage";
+import About from "./components/About";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,7 +27,7 @@ function App() {
 
   useEffect(() => {
     console.log("App.js - updateCart");
-    dispatch(updateCart());
+    if (auth.authenticate) dispatch(updateCart());
   }, [auth.authenticate]);
 
   return (
@@ -31,8 +35,12 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={HomePage} />
+          <Route path="/photo-gallery" component={PhotoGallery} />
+          <Route path="/contact" component={ContactPage} />
           <Route path="/cart" component={CartPage} />
+          <Route path="/about" component={About} />
           <Route path="/checkout" component={CheckoutPage} />
+          <Route path="/products/:slug" component={AllProducts} />
           <Route path="/account/orders" component={OrderPage} />
           <Route path="/order_details/:orderId" component={OrderDetailsPage} />
           <Route

@@ -6,7 +6,10 @@ const getCartItems = () => {
   return async (dispatch) => {
     try {
       dispatch({ type: cartConstants.ADD_TO_CART_REQUEST });
+      console.log("yaha tak to chal raha ");
       const res = await axios.post(`/user/getCartItems`);
+      console.log("yaha tak to pta ni chal raha ");
+
       if (res.status === 200) {
         const { cartItems } = res.data;
         console.log({ getCartItems: cartItems });
@@ -18,7 +21,11 @@ const getCartItems = () => {
         }
       }
     } catch (error) {
-      console.log(error);
+      console.log("ni hoya login", error);
+      dispatch({
+        type: cartConstants.ADD_TO_CART_FAILURE,
+        payload: { error },
+      });
     }
   };
 };
@@ -99,11 +106,10 @@ export const removeCartItem = (payload) => {
 export const updateCart = () => {
   return async (dispatch) => {
     const { auth } = store.getState();
+
     let cartItems = localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart"))
       : null;
-
-    console.log("upppppppppp");
 
     if (auth.authenticate) {
       localStorage.removeItem("cart");

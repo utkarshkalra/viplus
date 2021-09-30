@@ -25,7 +25,7 @@ axiosIntance.interceptors.response.use(
     return res;
   },
   (error) => {
-    console.log(error.response);
+    console.log("iski wajah se ho raha logout to", error);
     const status = error.response ? error.response.status : 500;
     if (status && status === 500) {
       localStorage.clear();

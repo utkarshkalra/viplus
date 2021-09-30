@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../../components/UI/Card";
+import Card from "../UI/Card";
 
 /**
  * @author
@@ -8,7 +8,7 @@ import Card from "../../components/UI/Card";
 
 const PriceDetails = (props) => {
   return (
-    <Card headerLeft={"Price Details"} style={{ maxWidth: "380px" }}>
+    <Card style={{ flex: "2" }} headerLeft={"Price Details"}>
       <div
         style={{
           padding: "20px",
@@ -23,7 +23,7 @@ const PriceDetails = (props) => {
           <div>Delivery Charges</div>
           <div>FREE</div>
         </div>
-        <div className="flexRow sb" style={{ margin: "10px 0" }}>
+        <div className="flexRow sb total-row">
           <div>Total Amount</div>
           <div>{props.totalPrice}</div>
         </div>

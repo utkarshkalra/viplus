@@ -6,6 +6,7 @@ import "./style.css";
  * @function CartItem
  **/
 
+import i1 from "../../../images/2.jpg";
 const CartItem = (props) => {
   const [qty, setQty] = useState(props.cartItem.qty);
 
@@ -23,38 +24,38 @@ const CartItem = (props) => {
   };
 
   return (
-    <div className="cartItemContainer">
-      <div className="flexRow">
+    <div className="cartItemContainer container ">
+      <div className="flexRow responsive-cart">
         <div className="cartProImgContainer">
-          <img src={img} alt={""} />
+          <img src={i1} alt={""} />
         </div>
-        <div className="cartItemDetails">
-          <div>
-            <p>{name}</p>
-            <p>Rs. {price}</p>
+
+        <div className="w-100">
+          <div className="w-100 h-100 cartItemDetails ">
+            <div>
+              <h5>{name}</h5>
+
+              <div className="quantityControl">
+                <button onClick={onQuantityDecrement}>-</button>
+                <input value={qty} readOnly />
+                <button onClick={onQuantityIncrement}>+</button>
+              </div>
+            </div>
+
+            <div className="price-cart ">
+              <div className="d-flex ">
+                <p>Rs. {price}</p> <span>{price + 50}</span>
+              </div>
+
+              <button
+                className="cartActionBtn w-100 m-auto"
+                onClick={() => props.onRemoveCartItem(_id)}
+              >
+                Delete
+              </button>
+            </div>
           </div>
-          <div>Delivery in 3 - 5 days</div>
         </div>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          margin: "5px 0",
-        }}
-      >
-        {/* quantity control */}
-        <div className="quantityControl">
-          <button onClick={onQuantityDecrement}>-</button>
-          <input value={qty} readOnly />
-          <button onClick={onQuantityIncrement}>+</button>
-        </div>
-        <button className="cartActionBtn">save for later</button>
-        <button
-          className="cartActionBtn"
-          onClick={() => props.onRemoveCartItem(_id)}
-        >
-          Remove
-        </button>
       </div>
     </div>
   );

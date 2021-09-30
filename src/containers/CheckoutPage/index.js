@@ -12,24 +12,24 @@ import Card from "../../components/UI/Card";
 import CartPage from "../CartPage";
 import AddressForm from "./AddressForm";
 
-import "./style.css";
+import { LoginStep } from "./helperComponent";
 
-/**
- * @author
- * @function CheckoutPage
- **/
+import "./style.css";
 
 const CheckoutStep = (props) => {
   return (
     <div className="checkoutStep">
       <div
         onClick={props.onClick}
-        className={`checkoutHeader ${props.active && "active"}`}
+        className={`checkoutHeader rounded-3 ${props.active && "active"} ${
+          props.done && "done"
+        }`}
       >
         <div>
           <span className="stepNumber">{props.stepNumber}</span>
           <span className="stepTitle">{props.title}</span>
         </div>
+        {props.msg && props.msg}
       </div>
       {props.body && props.body}
     </div>
@@ -72,14 +72,12 @@ const Address = ({
               {adr.address} <br /> {`${adr.state} - ${adr.pinCode}`}
             </div>
             {adr.selected && (
-              <MaterialButton
-                title="DELIVERY HERE"
+              <button
                 onClick={() => confirmDeliveryAddress(adr)}
-                style={{
-                  width: "200px",
-                  margin: "10px 0",
-                }}
-              />
+                className="deliver-btn"
+              >
+                Deliver here
+              </button>
             )}
           </div>
         ) : (
@@ -193,22 +191,25 @@ const CheckoutPage = (props) => {
 
   return (
     <Layout>
-      <div className="cartContainer" style={{ alignItems: "flex-start" }}>
+      <div className="cartCheckoutContainer flex-column flex-md-row">
         <div className="checkoutContainer">
           {/* check if user logged in or not */}
           <CheckoutStep
             stepNumber={"1"}
             title={"LOGIN"}
             active={!auth.authenticate}
-            body={
+            done={auth.authenticate}
+            msg={
               auth.authenticate ? (
-                <div className="loggedInId">
+                <div className="msg-div">
                   <span style={{ fontWeight: 500 }}>{auth.user.fullName}</span>
                   <span style={{ margin: "0 5px" }}>{auth.user.email}</span>
                 </div>
               ) : (
-                <div>
-                  <MaterialInput label="Email" />
+                <div className="msg-div">
+                  <span>
+                    Please Login or Create an account to place an order
+                  </span>
                 </div>
               )
             }
@@ -217,6 +218,16 @@ const CheckoutPage = (props) => {
             stepNumber={"2"}
             title={"DELIVERY ADDRESS"}
             active={!confirmAddress && auth.authenticate}
+            done={confirmAddress && auth.authenticate}
+            msg={
+              <div className="msg-div">
+                {!confirmAddress ? (
+                  <span> Please Chose a delivery Address</span>
+                ) : (
+                  <span>Selected</span>
+                )}
+              </div>
+            }
             body={
               <>
                 {confirmAddress ? (

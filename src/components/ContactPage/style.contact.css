@@ -1,0 +1,77 @@
+.contact-container {
+  background-color: var(--brand-color-dark);
+  min-height: 80vh;
+  padding-bottom: 100px;
+}
+.contact-container .contact-left {
+  overflow: hidden;
+  border-radius: 15px;
+  width: 40vw;
+  height: 80vh;
+  margin-top: 30px;
+}
+.contact-container img {
+  width: auto;
+  height: 100%;
+}
+
+.contact-right {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+  min-width: 300px;
+  width: 80%;
+  margin: auto;
+}
+
+.contact-right h1 {
+  font-size: 3rem;
+}
+.contact-right li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 200px;
+}
+
+.contact-right i {
+  font-size: 2rem;
+}
+.contact-right a {
+  color: #eee;
+  padding-bottom: 4px;
+  margin-bottom: 3px;
+  border-bottom-style: solid;
+  border-bottom-width: 3.1px;
+  width: fit-content;
+  display: inline-block;
+  font-size: 1.3rem;
+  margin-left: 10px;
+}
+
+.contact-right a:hover {
+  font-weight: 600;
+  color: white;
+  border-bottom-color: black;
+}
+@media screen and (max-width: 768px) {
+  .contact-container {
+    height: 80vh;
+  }
+
+  .contact-container .container {
+    height: 100%;
+  }
+
+  .contact-container .contact-right {
+    align-items: center;
+  }
+
+  .contact-container .contact-right p {
+    text-align: center;
+  }
+}

@@ -1,0 +1,43 @@
+.categories-div h2 {
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-color: var(--brand-color);
+  text-decoration-thickness: 4px;
+}
+.category-wrapper {
+  display: flex;
+  display: flex;
+  justify-content: space-around;
+  overflow-x: scroll;
+  height: 24vh;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 10vw;
+}
+
+.category p {
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+.category-img {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category img {
+  width: auto;
+  height: 80%;
+}
