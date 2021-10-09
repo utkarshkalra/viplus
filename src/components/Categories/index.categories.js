@@ -41,48 +41,8 @@ const Categories = () => {
                   <a href={`/${category.slug}?cid=${category._id}`}>
                     <div className="rounded-circle z-depth-2 shadow category-img">
                       <img
-                        alt="category-options"
-                        src={
-                          (index + 1) % 3 === 0
-                            ? designer
-                            : (index + 1) % 3 === 1
-                            ? pattern
-                            : black
-                        }
-                        data-holder-rendered="true"
-                      ></img>
-                    </div>
-                  </a>
-                )}
-              </div>
-            );
-        })}
-        {categoryUser?.categoriesUser?.map((category, index) => {
-          if (category.categoryImage)
-            return (
-              <div className="category flex" key={index}>
-                <p>{category.name}</p>
-                {category.categoryImage && (
-                  // <a href={`/${category.slug}?cid=${category._id}`}>
-                  //   <div className="rounded-circle z-depth-2 shadow category-img">
-                  //     <img
-                  //       alt="category-options"
-                  //       src={generatePublicUrl(category.categoryImage)}
-                  //       data-holder-rendered="true"
-                  //     ></img>
-                  //   </div>
-                  // </a>
-                  <a href={`/${category.slug}?cid=${category._id}`}>
-                    <div className="rounded-circle z-depth-2 shadow category-img">
-                      <img
-                        alt="category-options"
-                        src={
-                          (index + 1) % 3 === 0
-                            ? designer
-                            : (index + 1) % 3 === 1
-                            ? pattern
-                            : black
-                        }
+                        alt="category"
+                        src={category.categoryImage}
                         data-holder-rendered="true"
                       ></img>
                     </div>

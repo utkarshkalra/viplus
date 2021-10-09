@@ -18,7 +18,9 @@ import { generatePublicUrl } from "../../urlConfig";
 const ProductDetailsPage = (props) => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
-
+  useEffect(() => {
+    console.log("prod page", product);
+  }, [product]);
   useEffect(() => {
     const { productId } = props.match.params;
     console.log(props);
@@ -40,19 +42,18 @@ const ProductDetailsPage = (props) => {
       <div className="productDescriptionContainer">
         <div className="flexRow">
           <div className="verticalImageStack">
-            {product.productDetails.productPictures.map((thumb, index) => (
+            {product.productDetails?.productPictures?.map((picture) => (
               <div className="thumbnail">
-                <img src={generatePublicUrl(thumb.img)} alt={thumb.img} />
+                <img src={picture} alt="prod" />
+                <span>hey</span>
               </div>
             ))}
           </div>
           <div className="productDescContainer">
             <div className="productDescImgContainer">
               <img
-                src={generatePublicUrl(
-                  product.productDetails.productPictures[0].img
-                )}
-                alt={`${product.productDetails.productPictures[0].img}`}
+                src={product?.productDetails?.productPictures[0]}
+                alt={`${product?.productDetails?.productPictures[0]}`}
               />
             </div>
 
@@ -90,17 +91,12 @@ const ProductDetailsPage = (props) => {
           <div className="breed">
             <ul>
               <li>
-                <a href="#">Home</a>
+                <a href="/" style={{ color: "red" }}>
+                  Home
+                </a>
                 <IoIosArrowForward />
               </li>
-              <li>
-                <a href="#">Mobiles</a>
-                <IoIosArrowForward />
-              </li>
-              <li>
-                <a href="#">Samsung</a>
-                <IoIosArrowForward />
-              </li>
+
               <li>
                 <a href="#">{product.productDetails.name}</a>
               </li>

@@ -77,21 +77,8 @@ const HomePageProducts = () => {
                   <div class="product-grid gap-1 rounded-3">
                     <div class="product-image">
                       <a href={`/${prod.slug}/${prod._id}/p`} class="image">
-                        <img
-                          class="pic-1"
-                          src={
-                            logo ||
-                            generatePublicUrl(prod.productPictures[0].img)
-                          }
-                        />
-                        <img
-                          class="pic-2"
-                          src={
-                            logo2 ||
-                            generatePublicUrl(prod.productPictures[1].img) ||
-                            logo
-                          }
-                        />
+                        <img class="pic-1" src={prod.productPictures[0]} />
+                        <img class="pic-2" src={prod.productPictures[1]} />
                       </a>
                     </div>
                     <div class="product-content">
