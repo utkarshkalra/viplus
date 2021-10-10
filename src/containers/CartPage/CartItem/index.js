@@ -1,10 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
-
-/**
- * @author
- * @function CartItem
- **/
 
 import i1 from "../../../images/2.jpg";
 const CartItem = (props) => {
@@ -23,11 +18,15 @@ const CartItem = (props) => {
     props.onQuantityDec(_id, qty - 1);
   };
 
+  useEffect(() => {
+    console.log("propsie", props);
+  }, []);
+
   return (
     <div className="cartItemContainer container ">
       <div className="flexRow responsive-cart">
         <div className="cartProImgContainer">
-          <img src={i1} alt={""} />
+          <img src={img} alt={"product image"} />
         </div>
 
         <div className="w-100">

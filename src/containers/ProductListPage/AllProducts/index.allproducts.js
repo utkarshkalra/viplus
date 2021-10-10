@@ -2,12 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsBySlug } from "../../../actions";
 import "./style.product.css";
-import logo from "../../../images/2.jpg";
-import logo2 from "../../../images/37.jpg";
+
 import { BiRupee } from "react-icons/bi";
+import { BsFilterLeft } from "react-icons/bs";
 import { IoIosArrowForward, IoIosStar, IoMdCart } from "react-icons/io";
 import { AiFillStar, AiFillThunderbolt } from "react-icons/ai";
-import { generatePublicUrl } from "../../../urlConfig";
+
+import { getAllCategoryUser } from "../../../actions";
+
+// import "./style.category.css";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import Loading from "../../../components/UI/Loading/loading";
 
 import { MaterialButton } from "../../../components/MaterialUI";
@@ -34,7 +41,10 @@ const AllProducts = (props) => {
   const dispatch = useDispatch();
 
   const { match } = props;
-
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
   useEffect(() => {
     dispatch(getProductsBySlug(match.params.slug));
   }, []);
@@ -50,6 +60,12 @@ const AllProducts = (props) => {
         setShowAlert(false);
       }, 2500);
   }, [cart]);
+
+  const categoryUser = useSelector((state) => state.categoryUser);
+
+  useEffect(() => {
+    dispatch(getAllCategoryUser());
+  }, []);
 
   return (
     <>
@@ -69,79 +85,106 @@ const AllProducts = (props) => {
       )}
       {product.productRequest ? (
         <Loading />
-      ) : product.products.length > 0 ? (
-        <div className="product-container p-4">
-          <h2 className="pb-4">{"Products"}</h2>
+      ) : product.products.length > 0 &&
+        categoryUser.categoriesUser.length > 0 ? (
+        <>
+          <div className="gallery-container">
+            <div className="gallery">
+              <h1>Products</h1>
+              <div>
+                <a className="prev" href="/">
+                  Home&nbsp;
+                </a>{" "}
+                <span> {">"} </span>
+                <a href="#"> &nbsp; Products</a>
+              </div>
+            </div>
+          </div>
 
-          <div class="row allproduct">
-            {product?.products.map((prod, index) => {
-              return (
-                <div key={index} class="col-md-3 col-sm-6 my-2">
-                  <div class="product-grid gap-1 rounded-3">
-                    <div class="product-image">
-                      <a href={`/${prod.slug}/${prod._id}/p`} class="image">
-                        <img
-                          class="pic-1"
-                          src={
-                            logo ||
-                            generatePublicUrl(prod.productPictures[0].img)
-                          }
-                        />
-                        <img
-                          class="pic-2"
-                          src={
-                            logo2 ||
-                            generatePublicUrl(prod.productPictures[1].img) ||
-                            logo
-                          }
-                        />
-                      </a>
-                    </div>
-                    <div class="product-content">
-                      <h3 class="title">
-                        <a href="#">{prod.name}</a>
-                      </h3>
-                      <p>{prod.description.substring(0, 30) + "..."}</p>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <div class="price">
-                          <BiRupee />
-                          {prod.price}
-                        </div>
-                        <ul class="rating d-flex">
-                          <li>
-                            <AiFillStar />
-                          </li>
-                          <li>
-                            <AiFillStar />
-                          </li>
-                          <li>
-                            <AiFillStar />
-                          </li>
-                          <li>
-                            <AiFillStar />
-                          </li>
-                          <li>
-                            <AiFillStar />
-                          </li>
-                        </ul>
+          <div className="product-container p-4">
+            <div className="product-category-div">
+              <button className="filter-btn">
+                Filters
+                <BsFilterLeft />
+              </button>
+              {categoryUser.categoriesUser.map((element) => {
+                if (element.categoryImage) {
+                  return (
+                    <a href={`/${element.slug}?cid=${element._id}`}>
+                      <span
+                        className={
+                          element.slug === match.params.slug
+                            ? "active-category product-category"
+                            : "product-category"
+                        }
+                      >
+                        {element.name}
+                      </span>
+                    </a>
+                  );
+                }
+              })}
+            </div>
+            <div class="row allproduct ms-4">
+              {product?.products.map((prod, index) => {
+                return (
+                  <div
+                    key={index}
+                    class="col-lg-4 col-md-6 my-2"
+                    data-aos="zoom-in"
+                  >
+                    <div class="product-grid gap-1 rounded-3">
+                      <div class="product-image">
+                        <a href={`/${prod.slug}/${prod._id}/p`} class="image">
+                          <img class="pic-1" src={prod.productPictures[0]} />
+                          <img class="pic-2" src={prod.productPictures[1]} />
+                        </a>
                       </div>
-                      <div className="flexRow">
-                        <MaterialButton
-                          title="ADD TO CART"
-                          bgColor="#ff9f00"
-                          textColor="#ffffff"
-                          style={{
-                            marginRight: "5px",
-                          }}
-                          icon={<IoMdCart />}
-                          onClick={() => {
-                            const { _id, name, price } = prod;
-                            const img = prod.productPictures[0].img;
-                            setShowAlert(true);
-                            dispatch(addToCart({ _id, name, price, img }));
-                          }}
-                        />
-                        {/* <MaterialButton
+                      <div class="product-content">
+                        <h3 class="title">
+                          <a href="#">{prod.name}</a>
+                        </h3>
+                        <p>{prod.description.substring(0, 30) + "..."}</p>
+                        <div className="d-flex justify-content-between align-items-center">
+                          <div class="price">
+                            <BiRupee />
+                            {prod.price}
+                          </div>
+                          <ul class="rating d-flex">
+                            <li>
+                              <AiFillStar />
+                            </li>
+                            <li>
+                              <AiFillStar />
+                            </li>
+                            <li>
+                              <AiFillStar />
+                            </li>
+                            <li>
+                              <AiFillStar />
+                            </li>
+                            <li>
+                              <AiFillStar />
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="flexRow">
+                          <MaterialButton
+                            title="ADD TO CART"
+                            bgColor="#ff9f00"
+                            textColor="#ffffff"
+                            style={{
+                              marginRight: "5px",
+                            }}
+                            icon={<IoMdCart />}
+                            onClick={() => {
+                              const { _id, name, price } = prod;
+                              const img = prod.productPictures[0];
+                              setShowAlert(true);
+                              dispatch(addToCart({ _id, name, price, img }));
+                            }}
+                          />
+                          {/* <MaterialButton
                           title="BUY NOW"
                           bgColor="#fb641b"
                           textColor="#ffffff"
@@ -150,15 +193,16 @@ const AllProducts = (props) => {
                           }}
                           icon={<AiFillThunderbolt />}
                         /> */}
-                      </div>
-                    </div>{" "}
+                        </div>
+                      </div>{" "}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-                        
+                );
+              })}
+                          
+            </div>
           </div>
-        </div>
+        </>
       ) : (
         <NoProductsFound />
       )}

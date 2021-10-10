@@ -9,6 +9,7 @@ import Icon from "./Icon";
 import slide1 from "../../images/1.png";
 import slide2 from "../../images/2.png";
 import slide3 from "../../images/3.png";
+import slide4 from "../../images/4.png";
 import bg1 from "../../images/viplus-bg-2.png";
 
 import "./style.home.css";
@@ -40,14 +41,14 @@ const HomePage = (props) => {
           <Carousel.Item interval={750}>
             <img className="d-block w-100" src={slide3} alt="Third slide" />
           </Carousel.Item>
+          <Carousel.Item interval={750}>
+            <img className="d-block w-100" src={slide4} alt="Fourth slide" />
+          </Carousel.Item>
         </Carousel>
 
         <Icon />
         <Categories />
 
-        {/* <div className="vh-100 vw-100" style={{ background: "white" }}>
-          <Categories />
-        </div> */}
         <div className="backgroundImg"></div>
 
         <HomePageProducts />

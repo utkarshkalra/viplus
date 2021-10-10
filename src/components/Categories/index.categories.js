@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllCategoryUser } from "../../actions";
-import { generatePublicUrl } from "../../urlConfig";
-
-import black from "../../images/categories/black.jpg";
-import designer from "../../images/categories/designer.jpg";
-import pattern from "../../images/categories/pattern.jpg";
 
 import "./style.category.css";
 const Categories = () => {
