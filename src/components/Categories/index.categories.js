@@ -22,17 +22,7 @@ const Categories = () => {
           if (category.categoryImage)
             return (
               <div className="category flex" key={index}>
-                <p>{category.name}</p>
                 {category.categoryImage && (
-                  // <a href={`/${category.slug}?cid=${category._id}`}>
-                  //   <div className="rounded-circle z-depth-2 shadow category-img">
-                  //     <img
-                  //       alt="category-options"
-                  //       src={generatePublicUrl(category.categoryImage)}
-                  //       data-holder-rendered="true"
-                  //     ></img>
-                  //   </div>
-                  // </a>
                   <a href={`/${category.slug}?cid=${category._id}`}>
                     <div className="rounded-circle z-depth-2 shadow category-img">
                       <img
@@ -43,6 +33,7 @@ const Categories = () => {
                     </div>
                   </a>
                 )}
+                <p>{category.name}</p>
               </div>
             );
         })}
