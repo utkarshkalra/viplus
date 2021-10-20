@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsBySlug } from "../../../actions";
 import "./style.product.css";
-import logo from "../../../images/2.jpg";
-import logo2 from "../../../images/37.jpg";
+
 import { BiRupee } from "react-icons/bi";
-import { IoIosArrowForward, IoIosStar, IoMdCart } from "react-icons/io";
-import { AiFillStar, AiFillThunderbolt } from "react-icons/ai";
-import { generatePublicUrl } from "../../../urlConfig";
+import { IoMdCart } from "react-icons/io";
+import { AiFillStar } from "react-icons/ai";
 import Loading from "../../../components/UI/Loading/loading";
 import AOS from "aos";
 import { MaterialButton } from "../../../components/MaterialUI";
@@ -55,7 +53,7 @@ const HomePageProducts = () => {
   return (
     <>
       {showAlert && (
-        <div className="alerts">
+        <div className="alerts" data-aos="zoom-out">
           {cart.updatingCart ? (
             <Alert variant="secondary">
               <Spinner animation="border" role="status" className="mx-2">
@@ -80,7 +78,11 @@ const HomePageProducts = () => {
             <div class="row allproduct">
               {product?.products.map((prod, index) => {
                 return (
-                  <div key={index} class="col-md-4 col-sm-6 my-2">
+                  <div
+                    data-aos="zoom-in"
+                    key={index}
+                    class="col-md-4 col-sm-6 my-2"
+                  >
                     <div class="product-grid gap-1 rounded-3">
                       <div class="product-image">
                         <a href={`/${prod.slug}/${prod._id}/p`} class="image">

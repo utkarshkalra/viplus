@@ -21,7 +21,7 @@ const Categories = () => {
         {categoryUser?.categoriesUser?.map((category, index) => {
           if (category.categoryImage)
             return (
-              <div className="category flex" key={index}>
+              <div className="category flex" data-aos="zoom-in" key={index}>
                 {category.categoryImage && (
                   <a href={`/${category.slug}?cid=${category._id}`}>
                     <div className="rounded-circle z-depth-2 shadow category-img">

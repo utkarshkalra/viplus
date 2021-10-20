@@ -96,7 +96,7 @@ const CartPage = (props) => {
           ))}
         </Card>
         <div
-          className="d-flex flex-column w-100 m-md-3 my-3"
+          className="d-flex flex-column w-100 m-md-3 my-3 price-card"
           style={{ flex: "2" }}
         >
           <PriceDetails

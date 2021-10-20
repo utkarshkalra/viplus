@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
 import Carousel from "react-bootstrap/Carousel";
 
@@ -19,16 +19,15 @@ import Categories from "../../components/Categories/index.categories";
 import HomePageProducts from "../ProductListPage/AllProducts/HomepageProducts";
 
 import HomePageAbout from "../../components/HomePageAbout";
-{
-  /* Welcome To Viplus ! If you are worried To select which Islamic topi is
-      suitable for you then you have came to thr right place . Viplus offers all
-      latest and trending caps collection. We believe to give you best service
-      for all islamic things. Peoples have different choice of caps. They select
-      what they prefer we presents you best islamic topi in our bazaar in india
-      . Latest and new products for your needs. */
-}
+
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const HomePage = (props) => {
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
   return (
     <Layout>
       <>

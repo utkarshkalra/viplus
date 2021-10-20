@@ -7,8 +7,16 @@
 }
 
 .place-order {
-  background-color: lightcoral;
+  background-color: var(--brand-color-dark);
   color: var(--font-color-2);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+
+.price-card {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  /* box-shadow: -1px 17px 61px 3px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: -1px 17px 61px 3px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: -1px 17px 61px 3px rgba(0, 0, 0, 0.25); */
 }

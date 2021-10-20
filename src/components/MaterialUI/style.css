@@ -7,13 +7,12 @@
   bottom: 0;
   background: #000;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 12;
+  z-index: 1200;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .modalContainer {
-  min-width: 400px;
   min-height: 200px;
   max-height: 90vh;
   background: #fff;
@@ -24,8 +23,11 @@
 .modalClose {
   position: absolute;
   color: #fff;
-  right: -24px;
+  padding: 8px 15px;
+  right: 0px;
   font-size: 20px;
+  font-weight: 600;
+  background-color: var(--brand-color-dark);
 }
 
 /* Material Input */
@@ -39,7 +41,6 @@
   margin-top: 25px;
 }
 .materialInput input {
-  width: 100%;
   flex: 1;
   outline: none;
   border: none;

@@ -22,7 +22,7 @@ const About = () => {
       <section className="m-4 homepage-about d-flex align-items-center">
         <Container style={{ marginBottom: "100px" }} className="text-center ">
           <Row className="align-items-center mb-4">
-            <Col>
+            <Col md={6} sm={12}>
               <span className="count">
                 Our
                 <span className="count2"> Mission</span>
@@ -39,9 +39,9 @@ const About = () => {
             </Col>
           </Row>
 
-          <Row className="align-items-center mb-4">
+          <Row className="align-items-center mb-4 flex-column-reverse flex-md-row">
             <Col md={6}>
-              <p className="text-end">
+              <p className="text-start text-md-end">
                 Viplus deals in b2b and b2c. We started as a small business.
                 Then because of our hardwork and patience we were able to thrive
                 in this industry. Presently we have 500+ dealers in the Indian
@@ -56,13 +56,13 @@ const About = () => {
             </Col>
           </Row>
           <Row className="align-items-center mb-4">
-            <Col>
+            <Col md={6}>
               <span className="count">
                 Our
                 <span className="count2"> Founder</span>
               </span>
             </Col>
-            <Col>
+            <Col md={6}>
               <p className="text-start">
                 We’re a team of around 15 people (and one pupper), all working
                 out of the Little’s factory in Devon where we make and pack all

@@ -5,14 +5,14 @@ import "./style.css";
 const HomePageAbout = () => {
   return (
     <section className="m-4 homepage-about d-flex align-items-center">
-      <Container className="text-center">
+      <Container className="text-center" data-aos="fade-down">
         <Row>
           <Col>
             <h1>About us</h1>
           </Col>
         </Row>
         <Row>
-          <Col className="mb-4">
+          <Col className="mb-4" data-aos="fade-down">
             <span className="count">
               500+ Clients <span className="count2"> and still counting.</span>
             </span>
@@ -24,7 +24,7 @@ const HomePageAbout = () => {
           </Col>
 
           <Col>
-            <p>
+            <p data-aos="zoom-in">
               Viplus deal in b2b and b2c and already we have 500+ dealers in the
               Indian marketing and this year we would be deal in international
               market. We have trendy caps and good quality stuff and designing.

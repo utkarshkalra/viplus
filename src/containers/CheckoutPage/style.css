@@ -35,7 +35,7 @@
   flex-wrap: wrap;
 }
 .checkoutHeader.active {
-  background: #2874f0;
+  background: var(--brand-color-dark);
 }
 
 .checkoutHeader.done {

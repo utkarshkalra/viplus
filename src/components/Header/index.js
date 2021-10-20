@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import ViplusLogo from "../../images/logo/viplus.svg";
-import goldenStar from "../../images/logo/golden-star.png";
-import { IoIosArrowDown, IoIosCart, IoIosSearch } from "react-icons/io";
+
 import { Dropdown, Navbar, Container, NavDropdown, Nav } from "react-bootstrap";
 import {
   Modal,
@@ -94,45 +93,50 @@ const Header = (props) => {
 
   return (
     <>
-      <Navbar bg="light" variant="light" expand="md" sticky="top">
-        <Container>
-          <Navbar.Brand href="/" className="d-flex align-items-center">
-            <img
-              alt="viplus logo"
-              src={ViplusLogo}
-              width="50"
-              height="50"
-              className="d-inline-block align-top"
-            />
-            Viplus
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/about">About</Nav.Link>
-              <Nav.Link href="/contact">Contact</Nav.Link>
-              <Nav.Link href="/photo-gallery">Gallery</Nav.Link>
-            </Nav>
-            <Navbar.Text>
-              <div>
-                <a href={`/cart`} className="cart nav-bar-btn px-2 py-1 mx-3">
-                  <Cart count={Object.keys(cart.cartItems).length} />
-                  <span style={{ margin: "0 10px" }}>Cart</span>
-                </a>
-              </div>
-            </Navbar.Text>
-            <Navbar.Text>
-              {auth.authenticate ? renderLoggedInMenu() : newUserNavBar()}
-            </Navbar.Text>
-          </Navbar.Collapse>
-        </Container>
+      <Navbar
+        className="px-2"
+        bg="light"
+        variant="light"
+        expand="md"
+        sticky="top"
+      >
+        <Navbar.Brand href="/" className="d-flex align-items-center">
+          <img
+            alt="viplus logo"
+            src={ViplusLogo}
+            width="50"
+            height="50"
+            className="d-inline-block align-top"
+          />
+          Viplus
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto px-4">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
+            <Nav.Link href="/contact">Contact</Nav.Link>
+            <Nav.Link href="/photo-gallery">Gallery</Nav.Link>
+          </Nav>
+
+          <Navbar.Text>
+            {auth.authenticate ? renderLoggedInMenu() : newUserNavBar()}
+          </Navbar.Text>
+          <Navbar.Text>
+            <div>
+              <a href={`/cart`} className="cart nav-bar-btn px-1 py-1 mx-3">
+                <Cart count={Object.keys(cart.cartItems).length} />
+                <span style={{ margin: "0 10px" }}>Cart</span>
+              </a>
+            </div>
+          </Navbar.Text>
+        </Navbar.Collapse>
       </Navbar>
       <div className="header">
         <Modal visible={loginModal} onClose={() => setLoginModal(false)}>
           <div className="authContainer">
-            <div className="row">
-              <div className="leftspace col">
+            <div className="row ">
+              <div className="leftspace  col-sm-12 col-md-6">
                 <img
                   src={ViplusLogo}
                   alt="viplus logo"
@@ -149,13 +153,13 @@ const Header = (props) => {
                   </a>
                 </div>
               </div>
-              <div className="rightspace col">
+              <div className="rightspace  col-sm-12 col-md-6">
                 <div className="loginInputContainer">
-                  {auth.error && (
+                  {/* {auth.error && (
                     <div style={{ color: "red", fontSize: 12 }}>
                       {auth.error}
                     </div>
-                  )}
+                  )} */}
                   {signup && (
                     <MaterialInput
                       type="text"
