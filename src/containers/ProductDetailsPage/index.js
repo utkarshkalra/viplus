@@ -38,50 +38,47 @@ const ProductDetailsPage = (props) => {
   return (
     <Layout>
       {/* <div>{product.productDetails.name}</div> */}
-      <div className="productDescriptionContainer">
-        <div className="flexRow">
-          <div className="verticalImageStack">
-            {product.productDetails?.productPictures?.map((picture) => (
-              <div className="thumbnail" onClick={() => setSrc(picture)}>
-                <img src={picture} alt="prod" />
-              </div>
-            ))}
-          </div>
+      <div className="productDescriptionContainer flex-column flex-lg-row">
+        <div className="flex-column">
           <div className="productDescContainer">
             <div className="productDescImgContainer">
               <img src={src} alt={`product image`} />
             </div>
+            <div className="flex-row horizontalImageStack">
+              {product.productDetails?.productPictures?.map((picture) => (
+                <div
+                  className={src === picture ? "thumbnail active" : "thumbnail"}
+                  onClick={() => setSrc(picture)}
+                >
+                  <img src={picture} alt="prod" />
+                </div>
+              ))}
+            </div>
 
             {/* action buttons */}
-            <div className="flexRow">
-              <MaterialButton
-                title="ADD TO CART"
-                bgColor="#ff9f00"
-                textColor="#ffffff"
-                style={{
-                  marginRight: "5px",
-                }}
-                icon={<IoMdCart />}
+            <div className="btn-container">
+              <div className="price-desc">
+                <span className="price">
+                  <BiRupee />
+                  {product.productDetails.price}
+                </span>
+              </div>
+              <button
+                className="addToCartBtn"
                 onClick={() => {
                   const { _id, name, price } = product.productDetails;
                   const img = product.productDetails.productPictures[0];
                   dispatch(addToCart({ _id, name, price, img }));
                   props.history.push(`/cart`);
                 }}
-              />
-              <MaterialButton
-                title="BUY NOW"
-                bgColor="#fb641b"
-                textColor="#ffffff"
-                style={{
-                  marginLeft: "5px",
-                }}
-                icon={<AiFillThunderbolt />}
-              />
+              >
+                ADD TO CART
+                <IoMdCart />
+              </button>
             </div>
           </div>
         </div>
-        <div>
+        <div className="m-4">
           {/* home > category > subCategory > productName */}
           <div className="breed">
             <ul>
@@ -99,61 +96,37 @@ const ProductDetailsPage = (props) => {
           </div>
           {/* product description */}
           <div className="productDetails">
-            <p className="productTitle">{product.productDetails.name}</p>
+            <h1>{product.productDetails.name}</h1>
+            <ul>
+              <li
+                style={{
+                  display: "list-item",
+                  listStyle: "disc",
+                  color: "#212121",
+                }}
+              >
+                {product.productDetails.description}
+              </li>
+            </ul>
+
             <div>
               <span className="ratingCount">
                 4.3 <IoIosStar />
               </span>
               <span className="ratingNumbersReviews">
-                72,234 Ratings & 8,140 Reviews
+                700 Ratings & 80 Reviews
               </span>
             </div>
-            <div className="extraOffer">
+            {/* <div className="extraOffer">
               Extra <BiRupee />
               4500 off{" "}
-            </div>
-            <div className="flexRow priceContainer">
-              <span className="price">
-                <BiRupee />
-                {product.productDetails.price}
-              </span>
+            </div> */}
+            {/* <div className="flexRow priceContainer">
               <span className="discount" style={{ margin: "0 10px" }}>
                 22% off
               </span>
-              {/* <span>i</span> */}
-            </div>
-            <div>
-              <p
-                style={{
-                  color: "#212121",
-                  fontSize: "14px",
-                  fontWeight: "600",
-                }}
-              >
-                Available Offers
-              </p>
-              <p style={{ display: "flex" }}>
-                <span
-                  style={{
-                    width: "100px",
-                    fontSize: "12px",
-                    color: "#878787",
-                    fontWeight: "600",
-                    marginRight: "20px",
-                  }}
-                >
-                  Description
-                </span>
-                <span
-                  style={{
-                    fontSize: "12px",
-                    color: "#212121",
-                  }}
-                >
-                  {product.productDetails.description}
-                </span>
-              </p>
-            </div>
+              {/* <span>i</span>
+            </div> */}
           </div>
         </div>
       </div>

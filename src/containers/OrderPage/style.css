@@ -1,32 +1,52 @@
-.orderItemContainer{
-    padding: 10px;
-    box-sizing: border-box;
-    display: flex;
+.order-page-container {
+  min-height: 40vh;
 }
-.orderImgContainer{
-    width: 80px;
-    height: 80px;
-    overflow: hidden;
-    text-align: center;
+
+.orderItemContainer {
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
 }
-.orderImg{
-    max-width: 80px;
-    max-height: 80px;
+.orderImgContainer {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  text-align: center;
 }
-.orderRow{
-    display: flex;
-    flex: 1;
+.orderImg {
+  max-width: 80px;
+  max-height: 80px;
 }
-.orderName{
-    width: 300px;
-    box-sizing: border-box;
-    padding: 0 20px;
-    font-size: 12px;
+.orderRow {
+  display: flex;
+  flex: 1;
 }
-.orderPrice{
-    box-sizing: border-box;
-    padding: 0 40px;
-    display: flex;
-    align-items: flex-start;
-    font-size: 14px;
-  }
+.orderName {
+  width: 300px;
+  box-sizing: border-box;
+  padding: 0 20px;
+  font-size: 12px;
+}
+.orderPrice {
+  box-sizing: border-box;
+  overflow: scroll;
+}
+
+.table {
+  max-width: 1100px;
+  overflow-x: scroll;
+  margin: auto;
+  border-radius: 10px !important;
+}
+
+.table th {
+  background-color: var(--brand-color-dark) !important;
+  color: var(--font-color-2) !important;
+}
+
+.table .id-col {
+  color: var(--brand-color);
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+}

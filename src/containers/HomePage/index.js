@@ -1,7 +1,5 @@
 import React from "react";
-import Header from "../../components/Header";
 import Layout from "../../components/Layout";
-import MenuHeader from "../../components/MenuHeader";
 import Carousel from "react-bootstrap/Carousel";
 
 import Icon from "./Icon";
@@ -14,7 +12,6 @@ import slide1_M from "../../images/mobile_carousel/1.png";
 import slide2_M from "../../images/mobile_carousel/2.png";
 import slide3_M from "../../images/mobile_carousel/3.png";
 import slide4_M from "../../images/mobile_carousel/4.png";
-import bg1 from "../../images/viplus-bg-2.png";
 
 import "./style.home.css";
 import Categories from "../../components/Categories/index.categories";

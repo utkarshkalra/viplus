@@ -4,13 +4,13 @@ import { getOrder } from "../../actions";
 import Layout from "../../components/Layout";
 import Card from "../../components/UI/Card";
 import Price from "../../components/UI/Price";
+import { BiRupee } from "react-icons/bi";
+import { IoMdCall } from "react-icons/io";
+import { ImLocation } from "react-icons/im";
+import { FaUserAlt } from "react-icons/fa";
+import { Accordion } from "react-bootstrap";
 
 import "./style.css";
-
-/**
- * @author
- * @function OrderDetails
- **/
 
 const OrderDetailsPage = (props) => {
   const dispatch = useDispatch();
@@ -59,50 +59,22 @@ const OrderDetailsPage = (props) => {
 
   return (
     <Layout>
-      <div
-        style={{
-          width: "1160px",
-          margin: "10px auto",
-        }}
-      >
-        <Card
-          style={{
-            margin: "10px 0",
-          }}
-        >
-          <div className="delAdrContainer">
-            <div className="delAdrDetails">
-              <div className="delTitle">Delivery Address</div>
-              <div className="delName">{orderDetails.address.name}</div>
-              <div className="delAddress">{orderDetails.address.address}</div>
-              <div className="delPhoneNumber">
-                Phone number {orderDetails.address.mobileNumber}
-              </div>
+      <div className="order-details-container container">
+        <div className="row">
+          <div className="col-md-8 col-12">
+            <div className="d-flex flex-row justify-content-between mt-2">
+              <h1 className="order-heading ">Track Order</h1>
+              <h1 className="order-heading colored-heading">
+                <BiRupee />
+                {orderDetails?.totalAmount}
+              </h1>
             </div>
-            <div className="delMoreActionContainer">
-              <div className="delTitle">More Actions</div>
-              <div className="delName">Download Invoice</div>
-            </div>
-          </div>
-        </Card>
-
-        {orderDetails.items.map((item, index) => (
-          <Card
-            style={{ display: "flex", padding: "20px 0", margin: "10px 0" }}
-          >
-            <div className="flexRow">
-              <div className="delItemImgContainer">
-                <img src={item.productId.productPictures[0].img} alt="" />
-              </div>
-              <div style={{ width: "250px" }}>
-                <div className="delItemName">{item.productId.name}</div>
-                <Price value={item.payablePrice} />
-              </div>
-            </div>
-            <div style={{ padding: "25px 50px" }}>
+            <span>Order Id: &nbsp;{orderDetails._id}</span>
+            <div style={{ padding: "25px 30px" }} className="my-4">
               <div className="orderTrack">
-                {orderDetails.orderStatus.map((status) => (
+                {orderDetails.orderStatus.map((status, index) => (
                   <div
+                    key={index}
                     className={`orderStatus ${
                       status.isCompleted ? "active" : ""
                     }`}
@@ -111,19 +83,89 @@ const OrderDetailsPage = (props) => {
                       className={`point ${status.isCompleted ? "active" : ""}`}
                     ></div>
                     <div className="orderInfo">
-                      <div className="status">{status.type}</div>
-                      <div className="date">{formatDate(status.date)}</div>
+                      <div
+                        className={
+                          status.isCompleted ? "status-active" : "status"
+                        }
+                      >
+                        {status.type}
+                      </div>
+                      {status.date ? (
+                        <div className="date">{formatDate(status.date)}</div>
+                      ) : (
+                        <div className="order-text">
+                          {status.type === "packed"
+                            ? "We are preparing your order"
+                            : status.type === "shipped"
+                            ? "We will ship your order soon"
+                            : "Pending"}
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div style={{ fontWeight: "500", fontSize: 14 }}>
-              {orderDetails.orderStatus[3].isCompleted &&
-                `Delivered on ${formatDate2(orderDetails.orderStatus[3].date)}`}
-            </div>
-          </Card>
-        ))}
+          </div>
+          <div className="col-md-4 col-12 mt-4">
+            <Accordion>
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Delivery Details</Accordion.Header>
+                <Accordion.Body>
+                  <div className="delAdrContainer">
+                    <div className="delAdrDetails">
+                      <div className="delName">
+                        {/* <FaUserAlt /> */}
+                        {orderDetails.address.name}
+                      </div>
+                      <div className="delAddress">
+                        <ImLocation />
+                        {orderDetails.address.address}
+                      </div>
+                      <div className="delPhoneNumber">
+                        <IoMdCall />
+                        {orderDetails.address.mobileNumber}
+                      </div>
+                    </div>
+                  </div>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+            <Accordion className="mt-2">
+              <Accordion.Item eventKey="1">
+                <Accordion.Header>Order Details</Accordion.Header>
+                <Accordion.Body>
+                  {orderDetails.items.map((item, index) => (
+                    <div>
+                      <div className="flexRow">
+                        <div className="delItemImgContainer">
+                          <img src={item.productId.productPictures[1]} alt="" />
+                        </div>
+                        <div style={{ width: "250px" }}>
+                          <div className="delItemName">
+                            {item.productId.name}
+                          </div>
+                          {item.productId.desc}
+                          <span className="order-heading colored-heading">
+                            <BiRupee />
+                            {item.payablePrice}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div style={{ fontWeight: "500", fontSize: 14 }}>
+                        {orderDetails.orderStatus[3].isCompleted &&
+                          `Delivered on ${formatDate2(
+                            orderDetails.orderStatus[3].date
+                          )}`}
+                      </div>
+                    </div>
+                  ))}
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          </div>
+        </div>
       </div>
     </Layout>
   );

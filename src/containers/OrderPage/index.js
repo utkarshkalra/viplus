@@ -1,19 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
+import { Table } from "react-bootstrap";
+
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { getOrders } from "../../actions";
 import Layout from "../../components/Layout";
-import Card from "../../components/UI/Card";
 import { BiRupee } from "react-icons/bi";
-import { IoIosArrowForward } from "react-icons/io";
-
+import Loading from "../../components/UI/Loading/loading";
 import "./style.css";
-import { Breed } from "../../components/MaterialUI";
-
-/**
- * @author
- * @function OrderPage
- **/
 
 const OrderPage = (props) => {
   const dispatch = useDispatch();
@@ -23,45 +17,102 @@ const OrderPage = (props) => {
     dispatch(getOrders());
   }, []);
 
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    setProducts([...user.orders]);
+  }, [user]);
+
+  const columns = [
+    {
+      dataField: "_id",
+      text: "Order ID",
+      sort: true,
+      classes: "id-col",
+
+      events: {
+        onClick: (e) => {},
+      },
+    },
+    {
+      dataField: "paymentStatus",
+      text: "Payment Status",
+    },
+    {
+      dataField: "totalAmount",
+      text: "Price",
+      sort: true,
+    },
+
+    {
+      dataField: "paymentType",
+      text: "Payment Type",
+    },
+  ];
   console.log(user);
 
   return (
     <Layout>
-      <div style={{ maxWidth: "1160px", margin: "5px auto" }}>
-        <Breed
-          breed={[
-            { name: "Home", href: "/" },
-            { name: "My Account", href: "/account" },
-            { name: "My Orders", href: "/account/orders" },
-          ]}
-          breedIcon={<IoIosArrowForward />}
-        />
-        {user.orders.map((order) => {
-          return order.items.map((item) => (
-            <Card style={{ display: "block", margin: "5px 0" }}>
-              <Link
-                to={`/order_details/${order._id}`}
-                className="orderItemContainer"
-              >
-                <div className="orderImgContainer">
-                  <img
-                    className="orderImg"
-                    src={item.productId.productPictures[0].img}
-                  />
-                </div>
-                <div className="orderRow">
-                  <div className="orderName">{item.productId.name}</div>
-                  <div className="orderPrice">
-                    <BiRupee />
-                    {item.payablePrice}
-                  </div>
-                  <div>{order.paymentStatus}</div>
-                </div>
-              </Link>
-            </Card>
-          ));
-        })}
+      <div className="gallery-container">
+        <div className="gallery">
+          <h1>Your Orders</h1>
+          <div>
+            <a className="prev" href="/">
+              Home&nbsp;
+            </a>{" "}
+            <span> {">"} </span>
+            <a href="#"> &nbsp; Orders</a>
+          </div>
+        </div>
       </div>
+      {user.orders.length ? (
+        <div className="order-page-container my-4 mx-1">
+          <>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Order ID</th>
+                  <th>Price</th>
+                  <th>Payment Status</th>
+                  <th>Payment Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                {user.orders.length > 0 ? (
+                  user.orders.map((order, index) => {
+                    return (
+                      <tr>
+                        <td>{index + 1}</td>
+                        <td
+                          className="id-col"
+                          onClick={() => {
+                            props.history.push(`/order_details/${order._id}`);
+                          }}
+                        >
+                          {order._id}
+                        </td>
+                        <td>
+                          <BiRupee />
+                          {order.totalAmount}
+                        </td>
+                        <td className="text-capitalize">
+                          {order.paymentStatus}
+                        </td>
+                        <td className="text-uppercase">{order.paymentType}</td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <h1>No Orders</h1>
+                )}
+              </tbody>
+            </Table>
+          </>
+        </div>
+      ) : (
+        <Loading />
+      )}
     </Layout>
   );
 };

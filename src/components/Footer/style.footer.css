@@ -50,3 +50,7 @@ footer {
   width: 20px;
   color: var(--brand-color);
 }
+
+footer .gx-5 {
+  --bs-gutter-x: 0rem !important;
+}
