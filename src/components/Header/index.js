@@ -125,8 +125,8 @@ const Header = (props) => {
       <div className="header">
         <Modal visible={loginModal} onClose={() => setLoginModal(false)}>
           <div className="authContainer">
-            <div className="row ">
-              <div className="leftspace  col-sm-12 col-md-6">
+            <div className="row">
+              {/* <div className="leftspace  col-sm-12 col-md-6">
                 <img
                   src={ViplusLogo}
                   alt="viplus logo"
@@ -134,16 +134,13 @@ const Header = (props) => {
                 />
                 <h2>Login</h2>
                 <p>Get access to your Orders, Cart</p>
-                <div>
-                  <i>
-                    <IoMdCall />
-                  </i>
-                  <a href="#" style={{ color: "white", fontWeight: "800" }}>
-                    +91 9922334455
-                  </a>
-                </div>
-              </div>
-              <div className="rightspace  col-sm-12 col-md-6">
+              </div> */}
+              <div className="rightspace  col">
+                <img
+                  src={ViplusLogo}
+                  alt="viplus logo"
+                  style={{ width: "90px" }}
+                />
                 <div className="loginInputContainer">
                   {/* {auth.error && (
                     <div style={{ color: "red", fontSize: 12 }}>
@@ -198,7 +195,7 @@ const Header = (props) => {
                           setLoginModal(true);
                           setSignup(true);
                         }}
-                        style={{ color: "#2874f0" }}
+                        style={{ color: "#2874f0", cursor: "pointer" }}
                       >
                         Sign Up
                       </span>
@@ -211,12 +208,20 @@ const Header = (props) => {
                           setSignup(false);
                           setLoginModal(true);
                         }}
-                        style={{ color: "#2874f0" }}
+                        style={{ color: "#2874f0", cursor: "pointer" }}
                       >
                         Login
                       </span>
                     </p>
                   )}
+                  <div className="w-50 m-auto text-danger">
+                    <i>
+                      <IoMdCall />
+                    </i>
+                    <a href="#" style={{ fontWeight: "800" }}>
+                      +91 9922334455
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

@@ -28,6 +28,7 @@
   font-size: 20px;
   font-weight: 600;
   background-color: var(--brand-color-dark);
+  cursor: pointer;
 }
 
 /* Material Input */

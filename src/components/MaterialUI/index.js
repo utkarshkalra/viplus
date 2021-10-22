@@ -8,7 +8,7 @@ const Modal = (props) => {
   return (
     <>
       <div className="modalFixedBg">
-        <div style={{ position: "relative" }}>
+        <div style={{ position: "relative", maxWidth: "100%" }}>
           <div className="modalClose" onClick={props.onClose}>
             X
           </div>
