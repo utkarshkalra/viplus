@@ -5,15 +5,8 @@ import Card from "../../components/UI/Card";
 import CartItem from "./CartItem";
 import { addToCart, getCartItems, removeCartItem } from "../../actions";
 import PriceDetails from "../../components/PriceDetails";
-
+import EmptyCart from "./emptyCartSVG";
 import "./style.css";
-import { MaterialButton } from "../../components/MaterialUI";
-import Loading from "../../components/UI/Loading/loading";
-
-/**
- * @author
- * @function CartPage
- **/
 
 /*
 Before Login
@@ -22,7 +15,6 @@ save in localStorage
 when try to checkout ask for credentials and 
 if logged in then add products to users cart database from localStorage
 
-
 */
 
 const CartPage = (props) => {
@@ -30,13 +22,19 @@ const CartPage = (props) => {
   const auth = useSelector((state) => state.auth);
   // const cartItems = cart.cartItems;
   const [cartItems, setCartItems] = useState(cart.cartItems);
-  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+
+  const [emptyCart, setEmptyCart] = useState(false);
 
   useEffect(() => {
     setCartItems(cart.cartItems);
-    if (cart.cartItems.length > 0) setLoading(false);
   }, [cart.cartItems]);
+
+  useEffect(() => {
+    if (Object.keys(cartItems).length > 0) setEmptyCart(false);
+    else setEmptyCart(true);
+    console.log("cart items ==========> length ", cartItems);
+  }, [cartItems]);
 
   useEffect(() => {
     if (auth.authenticate) {
@@ -79,21 +77,26 @@ const CartPage = (props) => {
       <div
         className="cartContainer d-flex flex-column flex-md-row"
         style={{ alignItems: "flex-start" }}
+        key={cartItems?.length}
       >
         <Card
           headerLeft={`My Cart`}
-          headerRight={<div>Deliver to</div>}
+          headerRight={<div>Price</div>}
           style={{ flex: "3", overflow: "scroll" }}
         >
-          {Object.keys(cartItems).map((key, index) => (
-            <CartItem
-              key={index}
-              cartItem={cartItems[key]}
-              onQuantityInc={onQuantityIncrement}
-              onQuantityDec={onQuantityDecrement}
-              onRemoveCartItem={onRemoveCartItem}
-            />
-          ))}
+          {emptyCart ? (
+            <EmptyCart />
+          ) : (
+            Object.keys(cartItems).map((key, index) => (
+              <CartItem
+                key={index}
+                cartItem={cartItems[key]}
+                onQuantityInc={onQuantityIncrement}
+                onQuantityDec={onQuantityDecrement}
+                onRemoveCartItem={onRemoveCartItem}
+              />
+            ))
+          )}
         </Card>
         <div
           className="d-flex flex-column w-100 m-md-3 my-3 price-card"

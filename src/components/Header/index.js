@@ -65,7 +65,7 @@ const Header = (props) => {
   const renderLoggedInMenu = () => {
     return (
       <NavDropdown title={auth.user.fullName} id="basic-nav-dropdown">
-        <NavDropdown.Item href="#">My Profile</NavDropdown.Item>
+        {/* <NavDropdown.Item href="#">My Profile</NavDropdown.Item> */}
         <NavDropdown.Item href="/account/orders">Orders</NavDropdown.Item>
         <NavDropdown.Divider />
         <NavDropdown.Item href="#" onClick={logout}>
@@ -104,7 +104,15 @@ const Header = (props) => {
         expand="md"
         sticky="top"
       >
-        <Navbar.Brand href="/" className="d-flex align-items-center">
+        <Navbar.Brand
+          href="/"
+          className="d-flex align-items-center"
+          style={{
+            fontFamily: "var(--cursive-font)",
+            fontSize: "1.8rem",
+            fontWeight: "700",
+          }}
+        >
           <img
             alt="viplus logo"
             src={ViplusLogo}
@@ -224,7 +232,10 @@ const Header = (props) => {
                     <i>
                       <IoMdCall />
                     </i>
-                    <a href="#" style={{ fontWeight: "800" }}>
+                    <a
+                      href="#"
+                      style={{ color: "var(--brand-color)", fontWeight: "800" }}
+                    >
                       +91 9922334455
                     </a>
                   </div>

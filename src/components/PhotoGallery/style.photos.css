@@ -31,7 +31,9 @@
   color: white;
 }
 .gallery-container h1 {
+  font-family: var(--cursive-font);
   font-size: 3rem;
+  font-weight: 700;
 }
 .gallery-container a.prev {
   color: rgb(255, 136, 136);

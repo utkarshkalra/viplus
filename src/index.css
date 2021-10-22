@@ -1,10 +1,13 @@
 :root {
-  --light-font: "Inter", sans-serif;
+  --light-font: "Roboto", sans-serif;
   --bold-font: "PT Sans", sans-serif;
+  --cursive-font: "Dancing Script", cursive;
   --bg: #f4f6f8;
   --font-color: #434344;
   --brand-color: #e00e21;
   --brand-color-dark: #a50609;
+  /* --brand-color: rgb(0, 131, 0);
+  --brand-color-dark: darkgreen; */
   --font-color-2: white;
   --navbar-color: #eee;
   --footer-color: rgb(222 222 222);
@@ -84,3 +87,10 @@ a.cart:hover {
 /* .navbar .show {
   display: flex;
 } */
+
+h1,
+h2 {
+  font-family: var(--cursive-font);
+  font-size: calc(2rem + 0.9vw) !important;
+  font-weight: 500;
+}

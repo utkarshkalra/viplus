@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-
+import { AiFillDelete } from "react-icons/ai";
 import i1 from "../../../images/2.jpg";
 const CartItem = (props) => {
   const [qty, setQty] = useState(props.cartItem.qty);
@@ -47,10 +47,10 @@ const CartItem = (props) => {
               </div>
 
               <button
-                className="cartActionBtn w-100 m-auto"
+                className="cartActionBtn w-100"
                 onClick={() => props.onRemoveCartItem(_id)}
               >
-                Delete
+                Delete <AiFillDelete />
               </button>
             </div>
           </div>

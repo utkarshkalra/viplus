@@ -5,8 +5,8 @@ import "./style.product.css";
 
 import { BiRupee } from "react-icons/bi";
 import { BsFilterLeft } from "react-icons/bs";
-import { IoIosArrowForward, IoIosStar, IoMdCart } from "react-icons/io";
-import { AiFillStar, AiFillThunderbolt } from "react-icons/ai";
+import { IoMdCart } from "react-icons/io";
+import { AiFillStar } from "react-icons/ai";
 
 import { getAllCategoryUser } from "../../../actions";
 
@@ -79,7 +79,7 @@ const AllProducts = (props) => {
       )}
       {product.productRequest ? (
         <Loading />
-      ) : product.products.length > 0 &&
+      ) : product?.products?.length > 0 &&
         categoryUser.categoriesUser.length > 0 ? (
         <>
           <div className="gallery-container">

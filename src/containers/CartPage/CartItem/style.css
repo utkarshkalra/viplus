@@ -1,5 +1,7 @@
 .cartItemContainer {
   margin: 10px 5px;
+  padding: 10px;
+  border-bottom: 1px solid #888;
 }
 .cartProImgContainer {
   width: 112px;
@@ -31,15 +33,20 @@
 }
 
 .cartActionBtn {
-  margin: 0 10px;
   font-family: "Roboto";
   font-weight: 600;
   text-transform: uppercase;
   background: transparent;
-  border: none;
+  border: 1.5px solid black !important;
+  border-radius: 5px;
   color: #212121;
   cursor: pointer;
   font-size: 15px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px 10px;
 }
 .quantityControl {
   display: flex;
@@ -51,7 +58,7 @@
   border-radius: 50%;
   border: none;
   border: 1px solid #c2c2c2;
-  background-color: lightcoral;
+  background-color: var(--font-color);
   color: var(--font-color-2);
 }
 .quantityControl input {
@@ -64,7 +71,7 @@
 }
 
 .price-cart p {
-  color: lightcoral;
+  color: var(--brand-color);
   font-weight: 600;
   font-size: 1.3rem;
   margin: 0;
