@@ -20,14 +20,7 @@ import HomePageProducts from "../ProductListPage/AllProducts/HomepageProducts";
 
 import HomePageAbout from "../../components/HomePageAbout";
 
-import AOS from "aos";
-import "aos/dist/aos.css";
-
 const HomePage = (props) => {
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
   return (
     <Layout>
       <>

@@ -78,10 +78,16 @@ const Header = (props) => {
   const newUserNavBar = () => {
     return (
       <a
-        className="nav-bar-btn mx-3 p-2 rounded-2"
+        className="navbar-login-signup-btn p-2 rounded-2"
         onClick={() => {
           setSignup(false);
           setLoginModal(true);
+        }}
+        style={{
+          background: "var(--brand-color)",
+          color: "var(--font-color-2)",
+          margin: "5px 22px",
+          display: "inline-block",
         }}
       >
         Login/Signup

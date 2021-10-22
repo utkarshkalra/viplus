@@ -18,11 +18,20 @@
   margin: 0 auto;
   align-items: center;
 }
+#basic-nav-dropdown {
+  background-color: var(--brand-color);
+  color: var(--font-color-2);
+  display: inline-block;
+  margin: 5px 22px;
+}
 
+#basic-nav-dropdown:hover {
+  color: var(--font-color-2) !important;
+}
 .header .nav-bar-btn {
   /* border: 1px solid var(--brand-color-dark); */
-  background: none;
-  color: var(--font-color);
+
+  color: var(--font-color-2) !important;
   text-transform: capitalize;
 }
 

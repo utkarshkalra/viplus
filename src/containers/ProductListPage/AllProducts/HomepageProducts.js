@@ -7,7 +7,6 @@ import { BiRupee } from "react-icons/bi";
 import { IoMdCart } from "react-icons/io";
 import { AiFillStar } from "react-icons/ai";
 import Loading from "../../../components/UI/Loading/loading";
-import AOS from "aos";
 import { MaterialButton } from "../../../components/MaterialUI";
 import { addToCart } from "../../../actions";
 
@@ -29,10 +28,6 @@ const HomePageProducts = () => {
   const cart = useSelector((state) => state.cart);
   const [showAlert, setShowAlert] = useState(false);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    AOS.init();
-  }, []);
 
   useEffect(() => {
     dispatch(getProductsBySlug("Best-Seller-Ut7CpHX1A"));

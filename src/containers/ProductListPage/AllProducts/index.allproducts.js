@@ -12,9 +12,6 @@ import { getAllCategoryUser } from "../../../actions";
 
 // import "./style.category.css";
 
-import AOS from "aos";
-import "aos/dist/aos.css";
-
 import Loading from "../../../components/UI/Loading/loading";
 
 import { MaterialButton } from "../../../components/MaterialUI";
@@ -41,10 +38,7 @@ const AllProducts = (props) => {
   const dispatch = useDispatch();
   const [showFilter, setShowFilter] = useState(false);
   const { match } = props;
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
+
   useEffect(() => {
     dispatch(getProductsBySlug(match.params.slug));
   }, []);

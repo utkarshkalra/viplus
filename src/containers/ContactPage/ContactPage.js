@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import contact from "../../images/contact-medium.jpeg";
-import Layout from "../Layout";
+import Layout from "../../components/Layout";
 import "./style.contact.css";
 import { ImLocation } from "react-icons/im";
 import { MdEmail } from "react-icons/md";
@@ -36,24 +36,24 @@ const ContactPage = () => {
             <div className="contact-right">
               <p>
                 Want to get in touch? We'd love to hear from you. Here's how you
-                can reach us...
+                can reach us ➡️
               </p>
 
               <div className="links">
                 <ul>
-                  <li>
+                  <li data-aos="fade-right">
                     <i>
                       <IoMdCall />
                     </i>
                     <a href="">+91 9922334455</a>
                   </li>
-                  <li>
+                  <li data-aos="fade-left">
                     <i>
                       <MdEmail />
                     </i>
                     <a href="">viplus@gmail.com</a>
                   </li>
-                  <li>
+                  <li data-aos="fade-right">
                     <i>
                       <TiSocialFacebook />
                     </i>
@@ -64,7 +64,7 @@ const ContactPage = () => {
                       Facebook
                     </a>
                   </li>
-                  <li>
+                  <li data-aos="fade-left">
                     <i>
                       <TiSocialInstagram />
                     </i>

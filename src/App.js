@@ -12,14 +12,19 @@ import OrderPage from "./containers/OrderPage";
 import OrderDetailsPage from "./containers/OrderDetailsPage";
 import AllProducts from "./containers/ProductListPage/AllProducts/index.allproducts";
 import PhotoGallery from "./components/PhotoGallery/index.photogallery";
-import ContactPage from "./components/ContactPage/ContactPage";
-import About from "./components/About";
+import ContactPage from "./containers/ContactPage/ContactPage";
+import About from "./containers/About";
 import Cart from "./components/UI/Cart";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
