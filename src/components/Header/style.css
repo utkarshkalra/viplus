@@ -26,9 +26,6 @@
   text-transform: capitalize;
 }
 
-.show > .btn-primary {
-  background-color: rgba(109, 50, 50, 0.3) !important;
-}
 .header .nav-bar-btn:hover,
 .header .nav-bar-btn:focus {
   background: none !important;
@@ -37,6 +34,10 @@
   text-decoration-line: 5px;
   text-decoration-color: var(--brand-color);
   box-shadow: none !important;
+}
+
+.show > .btn-primary {
+  background-color: rgba(109, 50, 50, 0.3) !important;
 }
 
 .logo {
