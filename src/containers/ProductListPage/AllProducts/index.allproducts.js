@@ -39,7 +39,7 @@ const AllProducts = (props) => {
   const cart = useSelector((state) => state.cart);
   const [showAlert, setShowAlert] = useState(false);
   const dispatch = useDispatch();
-
+  const [showFilter, setShowFilter] = useState(false);
   const { match } = props;
   useEffect(() => {
     AOS.init();
@@ -100,17 +100,29 @@ const AllProducts = (props) => {
               </div>
             </div>
           </div>
-
+          <button
+            className="filter-btn outside-filter-btn"
+            onClick={() => setShowFilter(!showFilter)}
+          >
+            Filters
+            <BsFilterLeft />
+          </button>
           <div className="product-container p-4">
-            <div className="product-category-div">
+            <div
+              className={
+                showFilter
+                  ? "product-category-div show"
+                  : "product-category-div"
+              }
+            >
               <button className="filter-btn">
                 Filters
                 <BsFilterLeft />
               </button>
-              {categoryUser.categoriesUser.map((element) => {
+              {categoryUser.categoriesUser.map((element, index) => {
                 if (element.categoryImage) {
                   return (
-                    <a href={`/${element.slug}?cid=${element._id}`}>
+                    <a key={index} href={`/${element.slug}?cid=${element._id}`}>
                       <span
                         className={
                           element.slug === match.params.slug
@@ -125,7 +137,7 @@ const AllProducts = (props) => {
                 }
               })}
             </div>
-            <div class="row allproduct ms-4">
+            <div class="row allproduct ms-0 ms-md-4">
               {product?.products.map((prod, index) => {
                 return (
                   <div

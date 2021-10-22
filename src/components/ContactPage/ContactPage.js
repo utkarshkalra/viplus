@@ -15,6 +15,18 @@ import {
 const ContactPage = () => {
   return (
     <Layout>
+      <div className="gallery-container">
+        <div className="gallery">
+          <h1>Contact Us</h1>
+          <div>
+            <a className="prev" href="/">
+              Home&nbsp;
+            </a>{" "}
+            <span> {">"} </span>
+            <a href="#"> &nbsp; Contact us</a>
+          </div>
+        </div>
+      </div>
       <div className="contact-container">
         <Container>
           <div className="contact d-flex flex-row flex-md-row justify-content-center h-100">
@@ -22,7 +34,6 @@ const ContactPage = () => {
               <img src={contact} alt="contact us" />
             </div>
             <div className="contact-right">
-              <h1>Contact Us</h1>
               <p>
                 Want to get in touch? We'd love to hear from you. Here's how you
                 can reach us...

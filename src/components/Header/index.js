@@ -11,7 +11,6 @@ import {
 } from "../MaterialUI";
 import { useDispatch, useSelector } from "react-redux";
 import { login, signout, getCartItems, signup as _signup } from "../../actions";
-import Cart from "../UI/Cart";
 import { IoMdCall } from "react-icons/io";
 
 const Header = (props) => {
@@ -26,7 +25,6 @@ const Header = (props) => {
   const dispatch = useDispatch();
 
   // state cart value
-  const cart = useSelector((state) => state.cart);
 
   const userSignup = () => {
     const user = { firstName, lastName, email, password };
@@ -121,14 +119,6 @@ const Header = (props) => {
 
           <Navbar.Text>
             {auth.authenticate ? renderLoggedInMenu() : newUserNavBar()}
-          </Navbar.Text>
-          <Navbar.Text>
-            <div>
-              <a href={`/cart`} className="cart nav-bar-btn px-1 py-1 mx-3">
-                <Cart count={Object.keys(cart.cartItems).length} />
-                <span style={{ margin: "0 10px" }}>Cart</span>
-              </a>
-            </div>
           </Navbar.Text>
         </Navbar.Collapse>
       </Navbar>

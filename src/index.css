@@ -57,3 +57,30 @@ button {
 .wa-chat-box-poweredby {
   display: none !important;
 }
+
+a.cart {
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--font-color);
+  border-radius: 50%;
+  height: 50px;
+  min-width: 50px;
+  border-radius: 25px;
+  box-shadow: 2px 2px 6px rgb(0 0 0 / 40%);
+  margin: 0;
+  padding: 0;
+}
+
+a.cart:hover {
+  color: #fff;
+}
+
+.navbar .show {
+  display: flex;
+}

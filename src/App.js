@@ -14,6 +14,7 @@ import AllProducts from "./containers/ProductListPage/AllProducts/index.allprodu
 import PhotoGallery from "./components/PhotoGallery/index.photogallery";
 import ContactPage from "./components/ContactPage/ContactPage";
 import About from "./components/About";
+import Cart from "./components/UI/Cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,8 @@ function App() {
     console.log("App.js - updateCart");
     if (auth.authenticate) dispatch(updateCart());
   }, [auth.authenticate]);
+
+  const cart = useSelector((state) => state.cart);
 
   return (
     <div className="App">
@@ -50,6 +53,11 @@ function App() {
           <Route path="/:slug" component={ProductListPage} />
         </Switch>
       </Router>
+      <div>
+        <a href={`/cart`} className="cart">
+          <Cart count={Object.keys(cart.cartItems).length} />
+        </a>
+      </div>
     </div>
   );
 }
