@@ -16,6 +16,7 @@ const OrderDetailsPage = (props) => {
   const dispatch = useDispatch();
   const orderDetails = useSelector((state) => state.user.orderDetails);
 
+  console.log("orderdetails", orderDetails);
   useEffect(() => {
     console.log({ props });
     const payload = {
@@ -136,7 +137,14 @@ const OrderDetailsPage = (props) => {
                 <Accordion.Header>Order Details</Accordion.Header>
                 <Accordion.Body>
                   {orderDetails.items.map((item, index) => (
-                    <div>
+                    <div
+                      onClick={() =>
+                        props.history.push(
+                          `/${item.productId.name}/${item.productId._id}/p`
+                        )
+                      }
+                      className="ordered-item"
+                    >
                       <div className="flexRow">
                         <div className="delItemImgContainer">
                           <img src={item.productId.productPictures[1]} alt="" />

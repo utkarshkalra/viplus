@@ -113,7 +113,7 @@
 .orderInfo .order-text {
   font-size: 0.9rem;
   font-weight: 500;
-  color: #888;
+  color: #eee;
 }
 
 .accordion-button {
@@ -121,4 +121,13 @@
   color: var(--font-color-2) !important;
   font-weight: 500;
   font-family: var(--light-font);
+}
+
+.ordered-item {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.ordered-item:hover {
+  transform: scale(1.1);
 }

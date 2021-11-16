@@ -129,6 +129,9 @@ const Header = (props) => {
             <Nav.Link href="/about">About</Nav.Link>
             <Nav.Link href="/contact">Contact</Nav.Link>
             <Nav.Link href="/photo-gallery">Gallery</Nav.Link>
+            <Nav.Link href="/Special-Designer-Caps-aGB1dqgjsi">
+              Products
+            </Nav.Link>
           </Nav>
 
           <Navbar.Text>

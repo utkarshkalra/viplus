@@ -89,6 +89,36 @@ export const addOrder = (payload) => {
   };
 };
 
+export const updateOrder = (payload) => {
+  console.log("update request");
+  return async (dispatch) => {
+    try {
+      const res = await axios.put(`/updateOrder/${payload.orderId}`, payload);
+      dispatch({ type: userConstants.UPDATE_USER_ORDER_REQUEST });
+      if (res.status === 201) {
+        console.log(res);
+        const { order } = res.data;
+        dispatch({
+          type: cartConstants.RESET_CART,
+        });
+        dispatch({
+          type: userConstants.UPDATE_USER_ORDER_SUCCESS,
+          payload: { order },
+        });
+      } else {
+        console.log(res, res.data);
+        const { error } = res.data;
+        dispatch({
+          type: userConstants.UPDATE_USER_ORDER_FAILURE,
+          payload: { error },
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const getOrders = () => {
   return async (dispatch) => {
     try {

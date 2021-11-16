@@ -116,7 +116,11 @@ const CartPage = (props) => {
           />
 
           <button
-            onClick={() => props.history.push(`/checkout`)}
+            onClick={() =>
+              emptyCart
+                ? alert("Your cart is empty ")
+                : props.history.push(`/checkout`)
+            }
             className="w-100 place-order p-2"
           >
             PLACE ORDER

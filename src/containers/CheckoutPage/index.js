@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "../../helpers/axios";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addOrder, getAddress, getCartItems } from "../../actions";
+import { addOrder, getAddress, getCartItems, updateOrder } from "../../actions";
 import Layout from "../../components/Layout";
 import {
   Anchor,
@@ -143,6 +143,7 @@ const CheckoutPage = (props) => {
       purchasedQty: cart.cartItems[key].qty,
     }));
     const payload = {
+      orderId: user.placedOrderId,
       addressId: selectedAddress._id,
       totalAmount,
       items,
@@ -166,9 +167,13 @@ const CheckoutPage = (props) => {
       handler: function (response) {
         console.log(response);
         setPaymentVerified(true);
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
+        console.log(
+          response.razorpay_payment_id,
+          response.razorpay_order_id,
+          response.razorpay_signature
+        );
+        alert("payment successful");
+        onConfirmPayment(true);
       },
       prefill: {
         name: auth.user.fullName,
@@ -186,13 +191,15 @@ const CheckoutPage = (props) => {
     paymentObject.on("payment.failed", function (response) {
       console.log(response, response.error);
       setPaymentVerified(false);
-      alert(response.error.code);
-      alert(response.error.description);
-      alert(response.error.source);
-      alert(response.error.step);
-      alert(response.error.reason);
-      alert(response.error.metadata.order_id);
-      alert(response.error.metadata.payment_id);
+      alert("Payment Failed", response.error.code, response.error.description);
+      console.log(
+        response.error.source,
+        response.error.step,
+        response.error.reason,
+        response.error.metadata.order_id,
+        response.error.metadata.payment_id
+      );
+      onConfirmPayment(false);
     });
 
     paymentObject.open();
@@ -259,6 +266,31 @@ const CheckoutPage = (props) => {
     setConfirmOrder(true);
   };
 
+  const onConfirmPayment = (paymentDone) => {
+    const totalAmount = Object.keys(cart.cartItems).reduce(
+      (totalPrice, key) => {
+        const { price, qty } = cart.cartItems[key];
+        return totalPrice + price * qty;
+      },
+      0
+    );
+    const items = Object.keys(cart.cartItems).map((key) => ({
+      productId: key,
+      payablePrice: cart.cartItems[key].price,
+      purchasedQty: cart.cartItems[key].qty,
+    }));
+    const payload = {
+      addressId: selectedAddress._id,
+      totalAmount,
+      items,
+      paymentStatus: paymentDone ? "completed" : "pending",
+      paymentType: "razorpay",
+      orderId: user.placedOrderId,
+    };
+
+    dispatch(updateOrder(payload));
+  };
+
   useEffect(() => {
     auth.authenticate && dispatch(getAddress());
     auth.authenticate && dispatch(getCartItems());
@@ -275,14 +307,14 @@ const CheckoutPage = (props) => {
   }, [user.address]);
 
   // useEffect(() => {
-  //   if (confirmOrder && user.placedOrderId) {
+  //   if (confirmOrder && user.placedOrderId ) {
   //     props.history.push(`/order_details/${user.placedOrderId}`);
   //   }
   // }, [user.placedOrderId]);
 
   useEffect(() => {
     if (confirmOrder && user.placedOrderId && paymentVerified) {
-      console.log("payment has been done you can proceed now");
+      props.history.push(`/order_details/${user.placedOrderId}`);
     }
   }, [user.placedOrderId, paymentVerified]);
 
@@ -409,7 +441,7 @@ const CheckoutPage = (props) => {
             active={paymentOption}
             body={
               paymentOption &&
-              user.placedOrderId(
+              user.placedOrderId && (
                 <div>
                   <div
                     className="d-flex flex-column flex-sm-row"

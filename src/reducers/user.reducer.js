@@ -87,6 +87,11 @@ export default (state = initState, action) => {
         ...state,
         placedOrderId: action.payload.order._id,
       };
+    case userConstants.UPDATE_USER_ORDER_SUCCESS:
+      state = {
+        ...state,
+        placedOrderId: action.payload.order._id,
+      };
       break;
   }
 
