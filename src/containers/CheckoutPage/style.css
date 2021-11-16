@@ -3,7 +3,7 @@
   margin: 15px auto;
   margin-bottom: 100px;
   justify-content: space-between;
-  height: 90vh;
+  min-height: 90vh;
   width: 90vw;
   align-items: start;
   display: flex;
@@ -127,4 +127,32 @@
 
 .deliver-btn:hover {
   background: #1758c9;
+}
+
+.razorpay-btn {
+  padding: 4px 4px 4px 7px;
+  background: var(--brand-color-dark);
+  display: flex;
+  color: white;
+  font-size: small;
+  font-weight: 500;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: space-around;
+  margin: 10px 15px;
+}
+
+.razorpay-btn span {
+  margin-right: 10px;
+  min-width: 117px;
+}
+
+.razorpay-logo {
+  width: 104px;
+  border-radius: 5px;
+  height: 40px;
+  background: white;
+  display: flex;
+  align-items: center;
+  padding: 5px;
 }

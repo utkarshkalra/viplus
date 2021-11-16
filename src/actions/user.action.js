@@ -62,9 +62,9 @@ export const addOrder = (payload) => {
       if (res.status === 201) {
         console.log(res);
         const { order } = res.data;
-        dispatch({
-          type: cartConstants.RESET_CART,
-        });
+        // dispatch({
+        //   type: cartConstants.RESET_CART,
+        // });
         dispatch({
           type: userConstants.ADD_USER_ORDER_SUCCESS,
           payload: { order },

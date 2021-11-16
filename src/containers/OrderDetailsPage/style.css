@@ -120,4 +120,5 @@
   background-color: var(--brand-color) !important;
   color: var(--font-color-2) !important;
   font-weight: 500;
+  font-family: var(--light-font);
 }

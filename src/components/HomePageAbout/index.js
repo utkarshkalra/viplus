@@ -5,7 +5,7 @@ import "./style.css";
 
 const HomePageAbout = () => {
   return (
-    <section className="m-4 homepage-about d-flex align-items-center">
+    <section className=" homepage-about d-flex align-items-center">
       <Container className="text-center" data-aos="fade-up">
         <Row>
           <Col>

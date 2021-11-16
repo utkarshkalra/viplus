@@ -22,7 +22,8 @@
 }
 #basic-nav-dropdown {
   background-color: var(--brand-color);
-  color: var(--font-color-2);
+  color: var(--font-color-2) !important;
+
   display: inline-block;
   margin: 5px 22px;
 }

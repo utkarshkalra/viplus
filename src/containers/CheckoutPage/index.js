@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import axios from "../../helpers/axios";
+
 import { useDispatch, useSelector } from "react-redux";
 import { addOrder, getAddress, getCartItems } from "../../actions";
 import Layout from "../../components/Layout";
@@ -11,7 +13,7 @@ import PriceDetails from "../../components/PriceDetails";
 import Card from "../../components/UI/Card";
 import CartPage from "../CartPage";
 import AddressForm from "./AddressForm";
-
+import razorpayLogo from "../../images/logo/razorpay.svg";
 import { LoginStep } from "./helperComponent";
 
 import "./style.css";
@@ -93,6 +95,18 @@ const Address = ({
   );
 };
 
+const loadRazorpay = () => {
+  return new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+
+    document.body.appendChild(script);
+  });
+};
+
 const CheckoutPage = (props) => {
   const user = useSelector((state) => state.user);
   const auth = useSelector((state) => state.auth);
@@ -103,9 +117,86 @@ const CheckoutPage = (props) => {
   const [orderSummary, setOrderSummary] = useState(false);
   const [orderConfirmation, setOrderConfirmation] = useState(false);
   const [paymentOption, setPaymentOption] = useState(false);
+  const [paymentVerified, setPaymentVerified] = useState(false);
   const [confirmOrder, setConfirmOrder] = useState(false);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  const displayRazorpay = async () => {
+    const res = await loadRazorpay();
+
+    if (!res) {
+      alert("Razorpay fails to load, please check your internet connection");
+      return;
+    }
+
+    const totalAmount = Object.keys(cart.cartItems).reduce(
+      (totalPrice, key) => {
+        const { price, qty } = cart.cartItems[key];
+        return totalPrice + price * qty;
+      },
+      0
+    );
+    const items = Object.keys(cart.cartItems).map((key) => ({
+      productId: key,
+      payablePrice: cart.cartItems[key].price,
+      purchasedQty: cart.cartItems[key].qty,
+    }));
+    const payload = {
+      addressId: selectedAddress._id,
+      totalAmount,
+      items,
+      paymentStatus: "pending",
+      paymentType: "cod",
+    };
+
+    const orderData = await axios.post(`/razorpay`, payload);
+
+    console.log("user address ====> -=p=p=p=p=p=p=p=", auth.user);
+
+    var options = {
+      key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+      amount: orderData.data.amount,
+      currency: orderData.data.currency,
+      name: "Viplus Caps",
+      description: "Greast caps",
+      image:
+        "https://res.cloudinary.com/viplus/image/upload/v1635443168/viplus_mlvd4f.svg",
+      order_id: orderData.data.id,
+      handler: function (response) {
+        console.log(response);
+        setPaymentVerified(true);
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature);
+      },
+      prefill: {
+        name: auth.user.fullName,
+        email: auth.user.email,
+        contact: selectedAddress.mobileNumber,
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#e00e21",
+      },
+    };
+    var paymentObject = new window.Razorpay(options);
+    paymentObject.on("payment.failed", function (response) {
+      console.log(response, response.error);
+      setPaymentVerified(false);
+      alert(response.error.code);
+      alert(response.error.description);
+      alert(response.error.source);
+      alert(response.error.step);
+      alert(response.error.reason);
+      alert(response.error.metadata.order_id);
+      alert(response.error.metadata.payment_id);
+    });
+
+    paymentObject.open();
+  };
 
   const onAddressSubmit = (addr) => {
     setSelectedAddress(addr);
@@ -183,11 +274,17 @@ const CheckoutPage = (props) => {
     //user.address.length === 0 && setNewAddress(true);
   }, [user.address]);
 
+  // useEffect(() => {
+  //   if (confirmOrder && user.placedOrderId) {
+  //     props.history.push(`/order_details/${user.placedOrderId}`);
+  //   }
+  // }, [user.placedOrderId]);
+
   useEffect(() => {
-    if (confirmOrder && user.placedOrderId) {
-      props.history.push(`/order_details/${user.placedOrderId}`);
+    if (confirmOrder && user.placedOrderId && paymentVerified) {
+      console.log("payment has been done you can proceed now");
     }
-  }, [user.placedOrderId]);
+  }, [user.placedOrderId, paymentVerified]);
 
   return (
     <Layout>
@@ -263,6 +360,7 @@ const CheckoutPage = (props) => {
             stepNumber={"3"}
             title={"ORDER SUMMARY"}
             active={orderSummary}
+            done={orderConfirmation && auth.authenticate}
             body={
               orderSummary ? (
                 <CartPage onlyCartItems={true} />
@@ -292,8 +390,11 @@ const CheckoutPage = (props) => {
                   <strong>{auth.user.email}</strong>
                 </p>
                 <MaterialButton
-                  title="CONTINUE"
-                  onClick={userOrderConfirmation}
+                  title="CONFIRM ORDER"
+                  onClick={() => {
+                    userOrderConfirmation();
+                    onConfirmOrder();
+                  }}
                   style={{
                     width: "200px",
                   }}
@@ -307,26 +408,34 @@ const CheckoutPage = (props) => {
             title={"PAYMENT OPTIONS"}
             active={paymentOption}
             body={
-              paymentOption && (
+              paymentOption &&
+              user.placedOrderId(
                 <div>
                   <div
-                    className="flexRow"
+                    className="d-flex flex-column flex-sm-row"
                     style={{
                       alignItems: "center",
                       padding: "20px",
+                      fontSize: "small",
                     }}
                   >
-                    <input type="radio" name="paymentOption" value="cod" />
-                    <div>Cash on delivery</div>
+                    <div>Click on the below button to complete Payment</div>
+                    <button className="razorpay-btn" onClick={displayRazorpay}>
+                      <span>Pay with Razorpay</span>
+                      <div className="razorpay-logo">
+                        <img src={razorpayLogo} alt="razorpayLogo" />
+                      </div>
+                    </button>
                   </div>
-                  <MaterialButton
+
+                  {/* <MaterialButton
                     title="CONFIRM ORDER"
                     onClick={onConfirmOrder}
                     style={{
                       width: "200px",
                       margin: "0 0 20px 20px",
                     }}
-                  />
+                  /> */}
                 </div>
               )
             }

@@ -44,6 +44,11 @@
   border-top-right-radius: 10px;
 }
 
+.product-category-div h2,
+h1 {
+  font-family: var(--light-font);
+}
+
 .product-category-div .product-category {
   cursor: pointer;
   color: black;
