@@ -77,10 +77,10 @@ const AllProducts = (props) => {
           )}
         </div>
       )}
-      {product.productRequest ? (
+      {product?.productRequest ? (
         <Loading />
       ) : product?.products?.length > 0 &&
-        categoryUser.categoriesUser.length > 0 ? (
+        categoryUser.categoriesUser?.length > 0 ? (
         <>
           <div className="gallery-container">
             <div className="gallery">

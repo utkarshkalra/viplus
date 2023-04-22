@@ -61,9 +61,9 @@ const HomePageProducts = () => {
           )}
         </div>
       )}
-      {product.productRequest ? (
+      {product?.productRequest ? (
         <Loading />
-      ) : product.products.length > 0 ? (
+      ) : product?.products?.length > 0 ? (
         <>
           <h2 className="py-4 best-seller-h2 ">Best Seller</h2>
           <div
@@ -91,7 +91,7 @@ const HomePageProducts = () => {
                         </h3>
                         <p>
                           {prod.description.substring(0, 30) +
-                            `${prod.description.length > 30 ? "..." : ""}`}
+                            `${prod.description?.length > 30 ? "..." : ""}`}
                         </p>
                         <div className="d-flex justify-content-between align-items-center">
                           <div class="price">

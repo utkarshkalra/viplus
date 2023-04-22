@@ -31,7 +31,7 @@ const ProductDetailsPage = (props) => {
     dispatch(getProductDetailsById(payload));
   }, []);
 
-  if (Object.keys(product.productDetails).length === 0) {
+  if (Object.keys(product.productDetails)?.length === 0) {
     return null;
   }
 

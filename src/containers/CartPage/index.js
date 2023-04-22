@@ -31,7 +31,7 @@ const CartPage = (props) => {
   }, [cart.cartItems]);
 
   useEffect(() => {
-    if (Object.keys(cartItems).length > 0) setEmptyCart(false);
+    if (Object.keys(cartItems)?.length > 0) setEmptyCart(false);
     else setEmptyCart(true);
     console.log("cart items ==========> length ", cartItems);
   }, [cartItems]);
@@ -82,7 +82,7 @@ const CartPage = (props) => {
         <Card
           headerLeft={`My Cart`}
           headerRight={<div>Price</div>}
-          style={{ flex: "3", overflow: "scroll" }}
+          style={{ flex: "3", overflow: "scroll", height: "95%" }}
         >
           {emptyCart ? (
             <EmptyCart />

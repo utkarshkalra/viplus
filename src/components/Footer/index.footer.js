@@ -29,11 +29,13 @@ const Footer = () => {
             <ul className="list-unstyled text-muted">
               <li data-aos="fade-up">
                 <IoMdCall />
-                <a href="#">8287176170</a>
+                <a href="#">99XXX9999</a>
               </li>
               <li data-aos="fade-up">
                 <MdEmail />
-                <a href="#">viplus-caps@gmail.com</a>
+                <a href="mailto:utkarshkalra.2001@gmail.com">
+                  utkarshkalra.2001@gmail.com
+                </a>
               </li>
               <li data-aos="fade-up">
                 <ImLocation />
@@ -47,7 +49,7 @@ const Footer = () => {
               <li data-aos="fade-up">
                 <TiSocialInstagram />{" "}
                 <a
-                  href="https://instagram.com/myviplus?utm_medium=copy_link"
+                  href="https://instagram.com/utkarshxkalra?utm_medium=copy_link"
                   target="_blank"
                 >
                   Instagram
@@ -55,10 +57,7 @@ const Footer = () => {
               </li>
               <li data-aos="fade-up">
                 <TiSocialFacebook />
-                <a
-                  href="https://www.facebook.com/104583478409837/posts/116409340560584/?sfnsn=wiwspmo"
-                  target="_blank"
-                >
+                <a href="https://www.facebook.com/" target="_blank">
                   Facebook
                 </a>
               </li>

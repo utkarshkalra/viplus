@@ -65,7 +65,7 @@ const OrderPage = (props) => {
           </div>
         </div>
       </div>
-      {user.orders.length ? (
+      {user.orders?.length ? (
         <div className="order-page-container my-4 mx-1">
           <>
             <Table striped bordered hover>
@@ -79,7 +79,7 @@ const OrderPage = (props) => {
                 </tr>
               </thead>
               <tbody>
-                {user.orders.length > 0 ? (
+                {user.orders?.length > 0 ? (
                   user.orders.map((order, index) => {
                     return (
                       <tr>

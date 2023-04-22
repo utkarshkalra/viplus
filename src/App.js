@@ -60,7 +60,7 @@ function App() {
       </Router>
       <div>
         <a href={`/cart`} className="cart">
-          <Cart count={Object.keys(cart.cartItems).length} />
+          <Cart count={Object.keys(cart.cartItems)?.length} />
         </a>
       </div>
     </div>

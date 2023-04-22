@@ -34,7 +34,7 @@ const MenuHeader = (props) => {
           ) : (
             <span>{category.name}</span>
           )}
-          {category.children.length > 0 ? (
+          {category.children?.length > 0 ? (
             <ul>{renderCategories(category.children)}</ul>
           ) : null}
         </li>
@@ -45,7 +45,7 @@ const MenuHeader = (props) => {
   return (
     <div className="menuHeader">
       <ul>
-        {category.categories.length > 0
+        {category.categories?.length > 0
           ? renderCategories(category.categories)
           : null}
       </ul>

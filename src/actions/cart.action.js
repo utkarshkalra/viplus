@@ -123,7 +123,7 @@ export const updateCart = () => {
             };
           }),
         };
-        if (Object.keys(cartItems).length > 0) {
+        if (Object.keys(cartItems)?.length > 0) {
           const res = await axios.post(`/user/cart/addtocart`, payload);
           if (res.status === 201) {
             dispatch(getCartItems());

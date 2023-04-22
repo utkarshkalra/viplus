@@ -51,16 +51,13 @@ const ContactPage = () => {
                     <i>
                       <MdEmail />
                     </i>
-                    <a href="">viplus@gmail.com</a>
+                    <a href="">utkarshkalra.2001@gmail.com</a>
                   </li>
                   <li data-aos="fade-right">
                     <i>
                       <TiSocialFacebook />
                     </i>
-                    <a
-                      href="https://www.facebook.com/104583478409837/posts/116409340560584/?sfnsn=wiwspmo"
-                      target="_blank"
-                    >
+                    <a href="https://www.facebook.com/" target="_blank">
                       Facebook
                     </a>
                   </li>
@@ -69,7 +66,7 @@ const ContactPage = () => {
                       <TiSocialInstagram />
                     </i>
                     <a
-                      href="https://instagram.com/myviplus?utm_medium=copy_link"
+                      href="https://instagram.com/utkarshxkalra?utm_medium=copy_link"
                       target="_blank"
                     >
                       Instagram

@@ -303,7 +303,7 @@ const CheckoutPage = (props) => {
       edit: false,
     }));
     setAddress(address);
-    //user.address.length === 0 && setNewAddress(true);
+    //user.address?.length === 0 && setNewAddress(true);
   }, [user.address]);
 
   // useEffect(() => {
@@ -398,7 +398,7 @@ const CheckoutPage = (props) => {
                 <CartPage onlyCartItems={true} />
               ) : orderConfirmation ? (
                 <div className="stepCompleted">
-                  {Object.keys(cart.cartItems).length} items
+                  {Object.keys(cart.cartItems)?.length} items
                 </div>
               ) : null
             }
